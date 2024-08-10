@@ -1,6 +1,7 @@
 import helper
 
 def main():
+        helper.ClearScreen()
         input(helper.Printer("""
                         ╔╗─╔╗╔═══╗╔═╗─╔╗╔═══╗╔═╗╔═╗╔═══╗╔═╗─╔╗
                         ║║─║║║╔═╗║║║╚╗║║║╔═╗║║║╚╝║║║╔═╗║║║╚╗║║

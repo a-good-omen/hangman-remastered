@@ -4,7 +4,7 @@ def ClearScreen():				#Calling this will clear the terminal window (won't work i
         print("\033[H\033[J")
       
           
-def Printer(text,delay=0.5,repetitions=1,dots=0,clear=True):					#Major role in program. Deals with dynamic typing effect.
+def Printer(text,delay=0.5,repetitions=1,dots=0,clear=True):	#Major role in program. Deals with dynamic typing effect.
 	if clear: ClearScreen() 
 	for i in range(repetitions):
 		for j in text: print(j,end='',flush=True); time.sleep(delay)

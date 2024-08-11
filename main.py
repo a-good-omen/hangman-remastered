@@ -1,8 +1,7 @@
 import helper
 
 def main():
-        helper.ClearScreen()
-        input(helper.Printer("""
+    helper.Printer("""
                         ╔╗─╔╗╔═══╗╔═╗─╔╗╔═══╗╔═╗╔═╗╔═══╗╔═╗─╔╗
                         ║║─║║║╔═╗║║║╚╗║║║╔═╗║║║╚╝║║║╔═╗║║║╚╗║║
                         ║╚═╝║║║─║║║╔╗╚╝║║║─╚╝║╔╗╔╗║║║─║║║╔╗╚╝║
@@ -10,18 +9,15 @@ def main():
                         ║║─║║║╔═╗║║║─║║║║╚╩═║║║║║║║║╔═╗║║║─║║║
                         ╚╝─╚╝╚╝─╚╝╚╝─╚═╝╚═══╝╚╝╚╝╚╝╚╝─╚╝╚╝─╚═╝
 
-                            ---------Created By Imu$ak----------
+                            ---------Created By Imu$ak----------""",delay=0.0005)
 
-                                  ↲ Press ENTER to start""",delay=0.005))
+    input(helper.Printer('\n\n\t\t\t\t  ↲ Press ENTER to start',delay=0.05,clear=False))
 
-        helper.ClearScreen()
-        helper.LoginSetup()
-        helper.ClearScreen()
+    helper.LoginSetup()
 
-        helper.Loader()
-        helper.ClearScreen()
+    helper.Printer("Loading",dots=4,repetitions=1,delay=0.05)
 
-        choice=input(helper.Printer("""
+    choice=input(helper.Printer("""
                  ##   ##  ######   ##  ##   ##  ##
                  ### ###  ##       ### ##   ##  ##
                  #######  ##       ######   ##  ##
@@ -38,19 +34,13 @@ def main():
                                                  ______________
                 4. Exit
         """,delay=0.005))
-        helper.ClearScreen()
-        if choice=='1':
-                pass
-        elif choice=='2':
-                pass
-        elif choice=='3':
-                helper.Printer("""
-**THE HANGMAN'S CURSE**
-
-In the late 1600s, a secluded village was haunted by a sinister figure known only as the Hangman. The legend\n told of a dark, cursed parchment that appeared in the hands of those who crossed the Hangman’s path. The parchment bore a hidden word that must be\n guessed to escape.
-
-For each incorrect guess, a spectral figure of the Hangman would draw closer to completion—a noose tightening\n around a ghostly neck. The cursed villagers who failed to guess the word were seized by the Hangman, their souls trapped within the parchment’s\n dark embrace.
-
-Though the Hangman disappeared centuries ago, whispers of his curse persist. Those who find the cursed\n parchment or hear the chilling challenge are said to risk becoming the Hangman’s next victims, forever bound to the terror of his eternal game.""",delay=0.05)
+    if choice=='1':
+         pass
+    elif choice=='2':
+         pass
+    elif choice=='3':
+         pass
+    elif choice=='4':
+         pass
 
 main()

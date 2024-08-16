@@ -1,4 +1,4 @@
-import helper
+import helper,sys
 
 def main():
     helper.Printer("""
@@ -17,15 +17,15 @@ def main():
 
     helper.Printer("Loading",dots=4,repetitions=1,delay=0.05)
 
-    choice=input(helper.Printer("""
+    choice=helper.Printer("""
                  ##   ##  ######   ##  ##   ##  ##
                  ### ###  ##       ### ##   ##  ##
                  #######  ##       ######   ##  ##
                  ## # ##  ####     ######   ##  ##
                  ##   ##  ##       ## ###   ##  ##
                  ##   ##  ##       ##  ##   ##  ##
-                 ##   ##  ######   ##  ##    ####
-
+                 ##   ##  ######   ##  ##    ####\n\n""",delay=0.0005)
+    helper.Printer("""
                 1. Play Game                      _________
                                                            |
                 2. Game Help                               0
@@ -33,7 +33,7 @@ def main():
                 3. View Profile                           / \\
                                                  ______________
                 4. Exit
-        """,delay=0.005))
+        """,delay=0.005,clear=False)
     if choice=='1':
          pass
     elif choice=='2':

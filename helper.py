@@ -59,30 +59,36 @@ def CreateAccount():					#Deals with account creation
 		PlayerData['userid']=input(Printer("\nCreate display name: ",clear=False))
 		PlayerData['passwd']=input(Printer("\nCreate password: ",clear=False))
 
-		Printer('Checking data format authenticity',dots=4)		
-		errors="Hmm.. Seems like the data you entered have the following errors:\n\n"
-
 		if '' in PlayerData.values():
-			errors+="~ All fields are mandatory! No field can be empty.\n\n"
-		if '@' not in PlayerData['email']:
+			Printer("All fields are mandatory!"); time.sleep(0.5); continue
+		
+		Printer("Checking data format authenticity",dots=3)
+		errors="Seems like the data you entered have the following errors:\n\n"
+		if len(PlayerData["name"])<4:
+			errors+="~ The name entered doesnt appear to be authentic.\n\n"
+		if '@gmail.com' not in PlayerData['email']:
 			errors+="~ Email doesn't appear to be authentic.\n\n"
-		if data.Verifier(PlayerData["userid"])==True:
-			errors+="~ User with display name already exists!"
+		if len(PlayerData["userid"])<4:
+			errors+="Display name must be atleast 4 characters long!\n\n"
+		if len(PlayerData["passwd"])<8:
+			errors+="Password too weak. Must be atleast 8 characters long!"
 
-		Printer("Loading",dots=2)
 		if errors.count('\n')==2:
 			Printer("Data format valid!")
+			Printer("Checking for duplication with existing records",dots=4)
+			if data.Verifier(PlayerData["userid"])==True:
+				Printer("User with display name already exists! Try using a different display name!"); time.sleep(0.5); continue
 			data.DataAdder(PlayerData)
 			Printer("Account created successfully!")
 			time.sleep(1)
 			break
 		else:
 			Printer(errors+'Try again i guess?')
-			time.sleep(1)
-	
+			time.sleep(2)
+
 
 def ExistingLogin(times=0):				#Deals with login for existing players
-	import data; i=times
+	import data
 	while True:
 		Printer("""
 \t\t|  _  _ . _
@@ -104,14 +110,13 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 
 		else:
 			Printer("No matching record found!"); time.sleep(1)
-			i+=1
-			if i>1:
+			times+=1
+			if times>1:
 				Printer("Loading",dots=2)
 				while True:
-					choice=input(Printer(f"""Since **{userid}** couldn't be found in the database. Would you like to\n
-1. Create Account\n\n2. Try Again\n\n3. Exit\n\n"""))
+					choice=input(Printer(f"""Since **{userid}** couldn't be found in the database, would you like to\n1. Create Account\n\n2. Try Again\n\n3. Exit\n\nCHOICE: """))
 					if choice =='1': CreateAccount(); break
-					elif choice=='2': ExistingLogin(i); break
+					elif choice=='2': ExistingLogin(times); break
 					elif choice=="3": Exit()
 
 

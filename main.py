@@ -1,50 +1,54 @@
-import helper
+import efx,sides
 
 def main():
-	helper.Printer("""
-	  	       _   _    _    _   _  ____ __  __    _    _   _ 
+	efx.Printer(\
+"""	  	       _   _    _    _   _  ____ __  __    _    _   _ 
 	  	      | | | |  / \  | \ | |/ ___|  \/  |  / \  | \ | |
 		      | |_| | / _ \ |  \| | |  _| |\/| | / _ \ |  \| |
 		      |  _  |/ ___ \| |\  | |_| | |  | |/ ___ \| |\  |
 		      |_| |_/_/   \_|_| \_|\____|_|  |_/_/   \_|_| \_|
                                                 
-                            ---------Created By Imu$ak----------""",delay=0.0005)
+                            ----------Created By Imu$ak----------""",delay=0.0005)
 
-	input(helper.Printer('\n\n\t\t\t\t  ↲ Press ENTER to start',clear=False))
+	input(efx.Printer('\n\n\t\t\t\t  ↲ Press ENTER to start',clear=False))
 
-	helper.LoginSetup()
+	sides.LoginSetup()
 
-	helper.Printer("Loading",dots=4,repetitions=1)
-    
-	while True:
-		helper.Printer("""
-                 ##   ##  ######   ##  ##   ##  ##
-                 ### ###  ##       ### ##   ##  ##
-                 #######  ##       ######   ##  ##
-                 ## # ##  ####     ######   ##  ##
-                 ##   ##  ##       ## ###   ##  ##
-                 ##   ##  ##       ##  ##   ##  ##
-                 ##   ##  ######   ##  ##    ####\n\n""",delay=0.0005)
-		choice=input(helper.Printer("""
-                1. Play Game                      _________
+	efx.Printer("Loading....")
+	def Menu():
+		while True:
+			efx.ClearScreen()
+			print(\
+f"""		.___  ___.  _______ .__   __.  __    __  
+		|   \/   | |   ____||  \ |  | |  |  |  | 		 		■USER: {sides.Player}■
+		|  \  /  | |  |__   |   \|  | |  |  |  | 
+		|  |\/|  | |   __|  |  . `  | |  |  |  | 
+		|  |  |  | |  |____ |  |\   | |  `--'  | 
+		|__|  |__| |_______||__| \__|  \______/\n\n
+                [1] Play Game                      _________
                                                            |
-                2. Game Help                               0
+                [2] Game Help                              0
                                                           /|\\
-                3. View Profile                           / \\
+                [3] View Profile                          / \\
                                                  ______________
-                4. Leaderboard
+                [4] Leaderboard
                 
-                5. Exit
-        """,delay=0.005,clear=False))
-		if choice=='1':
-			pass
-		elif choice=='2':
-		   pass
-		elif choice=='3':
-			pass
-		elif choice=='4':
-			pass
-		elif choice=='5':
-			helper.Exit()
+                [5] Exit""")
+        
+			choice=input(efx.Printer("CHOICE: ",delay=0.005,clear=False))
+			efx.ClearScreen() 
+			if choice=='1':
+				efx.Printer("Loading....")
+				sides.LoadGame()
+			elif choice=='2':
+			   pass
+			elif choice=='3':
+				pass
+			elif choice=='4':
+				pass
+			elif choice=='5':
+				choice=efx.Exit(opt='menu')
+				if choice==False: Menu()
+	Menu()		
 
 main()

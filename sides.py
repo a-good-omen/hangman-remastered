@@ -6,7 +6,7 @@ def PlayerIntro(Player):					#Deals with intro to the game. Only for first time 
 	efx.Printer("Welcome {Player}!")
 	time.sleep(0.1)
 	efx.Printer("""In the late 1900s, a secluded village was haunted by a sinister figure known by the villagers as the Hangman.\nThe legend told of a dark,cursed parchment that appeared in the hands of those who crossed the Hangman’s path.\nThe parchment bore a hidden word that must be guessed to escape.
- 
+
 For each incorrect guess, a spectral figure of the Hangman would draw closer to completion—a noose tightening\naround a ghostly neck. The cursed villagers who failed to guess the word were seized by the Hangman, their\nsouls trapped within the parchment’s dark embrace.
 
 Though the Hangman disappeared centuries ago, whispers of his curse persist. Those who find the cursed \nparchment or hear the chilling challenge are said to risk becoming the Hangman’s next victims, forever bound to\nthe terror of his eternal game.
@@ -43,7 +43,7 @@ def CreateAccount():					#Deals with account creation
 		if errors.count('\n')==2:
 			efx.Printer("Data format valid!");time.sleep(0.05)
 			efx.Printer("Checking for duplication with existing records....")
-			if data.Verifier(PlayerData["userid"])==True:
+			if data.Verifier(PlayerData["userid"])=='True':
 				efx.Printer("User with display name already exists! Try using a different display name!"); time.sleep(0.5); continue
 			data.DataAdder(PlayerData)
 			efx.Printer("No duplication found!")
@@ -107,11 +107,10 @@ def LoginSetup():					#Deals with login part of main program
 			Player=ExistingLogin()
 			efx.Printer("Login successfull!"); time.sleep(1)
 			break
-			
-		else:break
 		
 		
 def LoadGame():
+	efx.ClearScreen()
 	while True:
 		efx.Printer("Choose Difficulty level\n\n")
 		print(\

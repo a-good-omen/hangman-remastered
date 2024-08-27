@@ -6,6 +6,11 @@ A terminal based version of the popular word guessing game Hangman. Remastered v
 
 ## Requirements
 - Python
+#### Python Installation Guide  
+___Step 1: Download Python___
+Go to [](https://www.python.org/downloads/) to download the latest version of Python. Choose your operating system and click on "Download".  
+> Python is usually pre-installed on Linux systems. If not,you can install it using package manager.
+
 
 ## Must know's
 The game is based on the classical word guessing game **Hangman**. The game has been created using the basics of python. 

@@ -14,3 +14,22 @@ Go [here](https://www.python.org/downloads/) to download the latest version of P
 
 ## Must know's
 The game is based on the classical word guessing game **Hangman**. The game has been created using the basics of python. 
+![intro](Internal Storage/DCIM/Screensnots/SmartSelect_20240827223559_Termux.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

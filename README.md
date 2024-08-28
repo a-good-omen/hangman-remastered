@@ -14,7 +14,7 @@ Go [here](https://www.python.org/downloads/) to download the latest version of P
 
 ___Step 2: Install Python___  
 - Windows: Run the installed `.exe` file.
-- MacOS: Open the .pkg file you installed.
+- MacOS: Open the `.pkg` file you installed.
 - Linux: Use the package manager.
 
 **Install pip if needed.**
@@ -22,4 +22,5 @@ ___Step 2: Install Python___
 ## ++ Features
 
 Includes better animations and gameplay.
-![image](https://github.com/user-attachments/assets/0ec671b3-9e72-4fa0-885b-3ce21b244340)
+
+![intro](https://ibb.co/80C0cdB)

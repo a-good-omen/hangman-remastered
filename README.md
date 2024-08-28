@@ -10,7 +10,7 @@ A terminal based version of the popular word guessing game Hangman. Remastered v
 #### Python Installation Guide  
 ___Step 1: Download Python___  
 Go [here](https://www.python.org/downloads/) to download the latest version of Python. Choose your operating system and click on "Download".  
-> Python is usually pre-installed on Linux systems. If not,you can install it using package manager.
+> Python is usually pre-installed on Linux systems. If not, you can install it using package manager.
 
 ___Step 2: Install Python___
 - Windows: Run the installed `.exe` file.  
@@ -36,6 +36,7 @@ ___Step 2: Install Python___
 **and there's more...**
 
 > [!CAUTION]
-> Users have to be patient and give inputs only when prompted to ensure everything works as intended.  
->[!TIPS]
+> Be patient and give inputs only when prompted to ensure everything works as intended.
+
+> [!TIP]
 > Read the game guide (help) while you can to understand how everything works.

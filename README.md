@@ -22,3 +22,4 @@ ___Step 2: Install Python___
 ## ++ Features
 
 Includes better animations and gameplay.
+![image](https://github.com/user-attachments/assets/0ec671b3-9e72-4fa0-885b-3ce21b244340)

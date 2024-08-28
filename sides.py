@@ -2,17 +2,30 @@ import time,sys,efx,data
 
 Player=None
 
-def PlayerIntro(Player):					#Deals with intro to the game. Only for first time players
-	efx.Printer("Welcome {Player}!")
+def PlayerIntro():					#Outputs the lore of the game. Exclusively for first time players
 	time.sleep(0.1)
-	efx.Printer("""In the late 1900s, a secluded village was haunted by a sinister figure known by the villagers as the Hangman.\nThe legend told of a dark,cursed parchment that appeared in the hands of those who crossed the Hangman’s path.\nThe parchment bore a hidden word that must be guessed to escape.
-
-For each incorrect guess, a spectral figure of the Hangman would draw closer to completion—a noose tightening\naround a ghostly neck. The cursed villagers who failed to guess the word were seized by the Hangman, their\nsouls trapped within the parchment’s dark embrace.
-
-Though the Hangman disappeared centuries ago, whispers of his curse persist. Those who find the cursed \nparchment or hear the chilling challenge are said to risk becoming the Hangman’s next victims, forever bound to\nthe terror of his eternal game.
-
-**This game has been adapted from this lore.""")
+	efx.Printer(efx.lore)
 	time.sleep(1)
+
+
+def LoginSetup():					#Deals with login part of main program
+	global Player,PlayerData
+	while True:
+		choice=input(efx.Printer('Are you a new player?(Y/N) '))
+		choice=choice.upper()
+
+		if choice=="Y":
+			CreateAccount()
+			efx.Printer("Loading....")
+			PlayerIntro()
+			efx.Printer("Log in with your account to play."); time.sleep(0.1)
+			ExistingLogin()
+			break
+
+		elif choice=='N':
+			Player=ExistingLogin()
+			efx.Printer("Login successfull!"); time.sleep(1)
+			break
 
 
 def CreateAccount():					#Deals with account creation
@@ -22,7 +35,6 @@ def CreateAccount():					#Deals with account creation
 \t\t\_,| (/_(_| | (/_  (_|(_(_(_)|_|| | |""",delay=0.004)
 		PlayerData={}
 		PlayerData['name']=input(efx.Printer("\n\nName: ",clear=False)).title()
-		PlayerData['email']=input(efx.Printer("\nEmail: ",clear=False)).lower()
 		PlayerData['userid']=input(efx.Printer("\nCreate display name: ",clear=False))
 		PlayerData['passwd']=input(efx.Printer("\nCreate password: ",clear=False))
 
@@ -33,8 +45,6 @@ def CreateAccount():					#Deals with account creation
 		errors="Seems like the data you entered have the following errors:\n\n"
 		if len(PlayerData["name"])<4:
 			errors+="~ The name entered doesnt appear to be authentic.\n\n"
-		if '@gmail.com' not in PlayerData['email']:
-			errors+="~ Email doesn't appear to be authentic.\n\n"
 		if len(PlayerData["userid"])<4:
 			errors+="~ Display name must be atleast 4 characters long!\n\n"
 		if len(PlayerData["passwd"])<8:
@@ -43,8 +53,8 @@ def CreateAccount():					#Deals with account creation
 		if errors.count('\n')==2:
 			efx.Printer("Data format valid!");time.sleep(0.05)
 			efx.Printer("Checking for duplication with existing records....")
-			if data.Verifier(PlayerData["userid"])=='True':
-				efx.Printer("User with display name already exists! Try using a different display name!"); time.sleep(0.5); continue
+			if data.Verifier(PlayerData["userid"])=='user exists':
+				efx.Printer("User with display name already exists! Try logging in?"); time.sleep(0.5); continue
 			data.DataAdder(PlayerData)
 			efx.Printer("No duplication found!")
 			efx.Printer("Account created successfully!")
@@ -66,10 +76,11 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 		passwd=input(efx.Printer("\nEnter password: ",clear=False))
 		if ''==userid or ''==passwd: efx.Printer("All fields are mandatory!"); time.sleep(1); continue
 		
-		efx.Printer("Checking datbase for matching records....")
+		efx.Printer("Checking database for matching records....")
 
-		if data.Verifier(userid)==True:
-			if data.Verifier(userid,passwd)==False:
+		if data.Verifier(userid)=='True':
+			efx.Printer("Checking password...")
+			if data.Verifier(userid,passwd)=='incorrect password':
 				efx.Printer("Password is incorrect!")
 				efx.Printer("Try again!")
 				time.sleep(1)
@@ -90,48 +101,17 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 						if choice==False: ExistingLogin(times)
 
 
-def LoginSetup():					#Deals with login part of main program
-	global Player
+def LoadGame():					#Loads the main game after login is successfull
 	while True:
-		choice=input(efx.Printer('Are you a new player?(Y/N) '))
-		choice=choice.upper()
-
-		if choice=="Y":
-			CreateAccount()
-			efx.Printer("Loading....")
-			Player=ExistingLogin()
-			PlayerIntro(Player)
-			break
-
-		elif choice=='N':
-			Player=ExistingLogin()
-			efx.Printer("Login successfull!"); time.sleep(1)
-			break
-		
-		
-def LoadGame():
-	efx.ClearScreen()
-	while True:
-		efx.Printer("Choose Difficulty level\n\n")
-		print(\
-"""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣧⠀⢀                                                                  ⡠⠄⠀⠀⠄⡀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣿⣿⠃⠻⣧⠈⣦                                                                ⠊⢀⣤⣞⣔⢤⡈⠆
-⠀⠀⠀⠀⠀⠀⠀⠤⠴⠶⠿⢿⣿⡿⠁⠀⠀⠈⠆⠘⣷⡄                                                            ⠄⢠⣿⣧⣿⣿⣟⠇⠈⠢⡀
-⠀⠀⣤⣤⣤⣤⣤⣤⠤⠆⠂⣸⠟⠀⢀⣐⠒⠶⢶⣤⣽⣿⣦⣤⣤⣤⣀⣀⣀⠀			 ⣀⣀                            ⠌⠀⣿⠿⠿⠿⠿⣿⡀⢰⠒⠊
-⠀⠀⠈⠛⢿⣿⣷⡄⠀⠀⢠⠋⢠⣾⡟⠻⣷⣄⠀⠀⠈⠉⠛⠻⢿⣿⡿⠋                   ⠰⣿⣿⣿⣿⠆                        ⠌⢀⡾⠁⠀⠀⠀⠀⡈⣇⠀⢆
-⠀⠀⠀⠀⠀⠙⢻⣿⣦⠀⠁⢠⣿⣿⠁⠀⣿⣿⣆⠀⣇⠀⠀⣴⠟⠁                  ⢀⣀⣠⣇⣙⣻⣟⣋⣸⣄⣀⣀                  ⣀⠄⠃⠘⠇⠀⠈⠀⠀⠉⠀⣸⠆⡈⠢⢀
-⠀⠀⠀⠀⠀⠀⢸⣿⠹⣷⡄⠸⣿⣿⡄⠀⣿⣿⠏⠀⣿⡀⠊⢀⡴⠃                  ⠙⠟⣿⣿⠋⠋⠙⠙⣿⣿⠻⠋                 ⠸⡀⢰⣎⠀⠀⠀⠀⠀⢀⡴⠎⠁⠀⢐⠄⠀⡕
-⠀⠀⠀⠀⠀⠀⢸⡇⢰⠀⠙⢆⠈⠻⢷⡴⠟⠋⠀⠀⣿⣷⣾⠟                    ⣠⣴⢿⣿⠺⣶⣷⠗⣿⡿⣧⣄                   ⠑⠀⠪⡢⡀⠀⠀⠀⠈⠀⣀⢀⡴⠅⠀⠈
-⠀⠀⠀⠀⠀⠀⠸⠀⣸⠀⠀⠀⢀⣀⣠⣤⠶⠊⠁⠀⢹⣿⡃                            ⠈⠁                           ⢄⠑⠯⢞⣪⡀⣴⣾⡗⠋⠀⡀
-⠀⠀⠀⠀⠀⠀⠀⢠⣿⣴⣶⣿⣿⣿⣭⡀⠂⢤⣄⣀⢸⣿⣇                                                          ⠑⠂⠄⡈⠙⠈⢁⡠⠔⠂
-⠀⠀⠀⠀⠀⠀⠀⣼⣿⠿⠛⠉⠀⠉⠙⠛⠲⠤⠈⠙⠿⣿⣿⡄                                                             ⠈⠀⠐⠁
-⠀⠀⠀⠀⠀⠀⠰⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠧""")
+		efx.Printer("Choose Difficulty level\n\n",delay=0.01)
+		efx.Printer(efx.diffics_display,delay=0.001,clear=False)
 		efx.Printer("\n\t     [1] Cursed\t\t\t           [2] Ghost\t\t\t    [3] Phantom",delay=0.005,clear=False)
 		choice=input(efx.Printer("\n\nCHOICE: ",clear=False)); choice.lower()
-		if choice in ("cursed","1"):
-			diffic="Cursed"; break
-		elif choice in ("ghost","2"):
-			diffic="Ghost"; break
-		elif choice in ("phantom","3"):
-			diffic="Phantom"; break
+		if choice in ("cursed","1"): diffic="Cursed"; break
+		elif choice in ("ghost","2"): diffic="Ghost"; break
+		elif choice in ("phantom","3"): diffic="Phantom"; break
+		
+	efx.Printer("Loading...")
+	efx.Printer("Opening parchment...")
+	efx.Printer("REMEMBER: Lose, and its the end. The hangman shows no mercy and there's no escape!"); time.sleep(1)
+	word=data.LoadWord(Player,diffic)

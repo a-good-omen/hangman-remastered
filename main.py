@@ -8,7 +8,7 @@ def main():
 		      |  _  |/ ___ \| |\  | |_| | |  | |/ ___ \| |\  |
 		      |_| |_/_/   \_|_| \_|\____|_|  |_/_/   \_|_| \_|
                                                 
-                            ----------Created By Imu$ak----------""",delay=0.0005)
+                         ----------Created By a-good-omen----------""",delay=0.0005)
 
 	input(efx.Printer('\n\n\t\t\t\t  ↲ Press ENTER to start',clear=False))
 
@@ -17,14 +17,13 @@ def main():
 	efx.Printer("Loading....")
 	def Menu():
 		while True:
-			efx.ClearScreen()
-			print(\
-f"""		.___  ___.  _______ .__   __.  __    __  
-		|   \/   | |   ____||  \ |  | |  |  |  | 		 		■USER: {sides.Player}■
-		|  \  /  | |  |__   |   \|  | |  |  |  | 
-		|  |\/|  | |   __|  |  . `  | |  |  |  | 
-		|  |  |  | |  |____ |  |\   | |  `--'  | 
-		|__|  |__| |_______||__| \__|  \______/\n\n
+			choice=input(efx.Printer(
+f"""                .___  ___.  _______ .__   __.  __    __  
+                |   \/   | |   ____||  \ |  | |  |  |  |                                  ■ USER: {sides.Player} ■
+                |  \  /  | |  |__   |   \|  | |  |  |  | 
+                |  |\/|  | |   __|  |  . `  | |  |  |  | 
+                |  |  |  | |  |____ |  |\   | |  `--'  | 
+                |__|  |__| |_______||__| \__|  \______/\n\n
                 [1] Play Game                      _________
                                                            |
                 [2] Game Help                              0
@@ -33,22 +32,21 @@ f"""		.___  ___.  _______ .__   __.  __    __
                                                  ______________
                 [4] Leaderboard
                 
-                [5] Exit""")
-        
-			choice=input(efx.Printer("CHOICE: ",delay=0.005,clear=False))
-			efx.ClearScreen() 
-			if choice=='1':
+                [5] Exit
+                
+                CHOICE: """,delay=0.0005));choice=choice.lower()
+			if choice in ("play game",'1'):
 				efx.Printer("Loading....")
 				sides.LoadGame()
-			elif choice=='2':
-			   pass
-			elif choice=='3':
+			elif choice in ("game help",'2'):
+				...
+			elif choice in ("view profile",'3'):
+				...
+			elif choice in ("leaderboard",'4'):
 				pass
-			elif choice=='4':
-				pass
-			elif choice=='5':
+			elif choice in ("exit",'5'):
 				choice=efx.Exit(opt='menu')
 				if choice==False: Menu()
-	Menu()		
+	Menu()
 
 main()

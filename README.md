@@ -23,11 +23,11 @@ ___Step 2: Install Python___
 
 - Better animations and gameplay.
 
-![intro]()  
+![intro](https://github.com/user-attachments/assets/51a4ab60-bd20-4f44-a420-50cad5ad31ff)
 
 - Players can now save their progress allowing them to continue where they left off.
 
-![account]()
+![account](https://github.com/user-attachments/assets/3cbc553d-3233-44c3-bfdc-afaf8dbc770a)
 
 - Added game modes and cleaner UI.
 

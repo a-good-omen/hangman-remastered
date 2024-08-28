@@ -29,11 +29,13 @@ ___Step 2: Install Python___
 
 ![account](https://github.com/user-attachments/assets/3cbc553d-3233-44c3-bfdc-afaf8dbc770a)
 
-- Added game modes and cleaner UI.
+- Added game modes, local leaderboard and cleaner UI.
 
 ![menu]()
 
-**and more...**
+**and there's more...**
 
 > [!CAUTION]
-> Users have to be patient and give inputs only when prompted to ensure everything works as intended.
+> Users have to be patient and give inputs only when prompted to ensure everything works as intended.  
+>[!TIPS]
+> Read the game guide (help) while you can to understand how everything works.

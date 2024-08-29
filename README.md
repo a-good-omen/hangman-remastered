@@ -23,15 +23,15 @@ ___Step 2: Install Python___
 
 - Better animations and gameplay.
 
-![intro](https://github.com/user-attachments/assets/51a4ab60-bd20-4f44-a420-50cad5ad31ff)
+![intro](https://github.com/user-attachments/assets/9991c4ba-cb51-42bf-8610-1965c706c70b)
 
 - Players can now save their progress allowing them to continue where they left off.
 
-![account](https://github.com/user-attachments/assets/3cbc553d-3233-44c3-bfdc-afaf8dbc770a)
+![account](https://github.com/user-attachments/assets/a96e9969-11e3-47c2-8cf0-7a005bf3922f)
 
 - Added game modes, local leaderboard and cleaner UI.
 
-![menu]()
+![menu](https://github.com/user-attachments/assets/2acd85d8-5cd0-452f-a886-44c751fbf3ba)
 
 **and there's more...**
 

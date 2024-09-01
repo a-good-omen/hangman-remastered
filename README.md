@@ -23,7 +23,7 @@ ___Step 2: Install Python___
 
 - Better animations and gameplay.
 <p align=center>
-<img alt='intro' src="https://github.com/user-attachments/assets/9991c4ba-cb51-42bf-8610-1965c706c70b" width="850" height="350" />
+<img alt='intro' src="https://github.com/user-attachments/assets/9991c4ba-cb51-42bf-8610-1965c706c70b"/>
 </p>
 - Players can now save their progress allowing them to continue where they left off.
 <p align=center>

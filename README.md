@@ -27,11 +27,11 @@ ___Step 2: Install Python___
 </p>
 - Players can now save their progress allowing them to continue where they left off.
 <p align=center>
-<img alt='account' src="https://github.com/user-attachments/assets/a96e9969-11e3-47c2-8cf0-7a005bf3922f" width="800" height="350" />
+<img alt='account' src="https://github.com/user-attachments/assets/a96e9969-11e3-47c2-8cf0-7a005bf3922f" />
 </p>
 - Added game modes, local leaderboard and cleaner UI.
 <p align=center>
-<img alt='menu' src="https://github.com/user-attachments/assets/2acd85d8-5cd0-452f-a886-44c751fbf3ba" width="900" height="350" />
+<img alt='menu' src="https://github.com/user-attachments/assets/2acd85d8-5cd0-452f-a886-44c751fbf3ba" />
 </p>
 **and there's more...**
 

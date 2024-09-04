@@ -22,24 +22,9 @@ diffics_display="""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀⠀⠀⠀�
 ⠀⠀⠀⠀⠀⠀⠀⣼⣿⠿⠛⠉⠀⠉⠙⠛⠲⠤⠈⠙⠿⣿⣿⡄                                                             ⠈⠀⠐⠁
 ⠀⠀⠀⠀⠀⠀⠰⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠧"""
 
-parts={"head":"O","torso":"|","L.arm":"/","R.arm":"\\","L.leg":"/","R.leg":"\\","shld":"_","shoe":"_","torso2":". ."}
-hangman_display=f"""
-                ______________
- 		|             |
-H		|             |
-A		|            {parts['shld']}{parts['head']}{parts['shld']}
-N		|           {parts['L.arm']} {parts['torso']} {parts['R.arm']}
-G		|            {parts['L.leg']} {parts['R.leg']}
-M		|
-A		|
-N		|
- 		|
- 	  ______|______
-	 /_____________\\ """
-
 
 def ClearScreen():				#Calling this will clear the terminal window (won't work in Python's' IDLE)
-	os.system('cls' if os.name == 'nt' else 'clear')
+	print("\033[H\033[J")
 
      
 def Printer(text,repetitions=1,clear=True,delay=0.05):					#Deals with dynamic typing effect
@@ -67,3 +52,37 @@ def Exit(opt=False):				#Custom exit function
 		Printer("Exitting...")
 		ClearScreen()
 		sys.exit()
+
+
+def Menu():
+		while True:
+			choice=input(efx.Printer(
+f"""                .___  ___.  _______ .__   __.  __    __  
+                |   \/   | |   ____||  \ |  | |  |  |  |                                  ■ USER: {sides.Player} ■
+                |  \  /  | |  |__   |   \|  | |  |  |  | 
+                |  |\/|  | |   __|  |  . `  | |  |  |  | 
+                |  |  |  | |  |____ |  |\   | |  `--'  | 
+                |__|  |__| |_______||__| \__|  \______/\n\n
+                [1] Play Game                      _________
+                                                           |
+                [2] Game Help                              0
+                                                          /|\\
+                [3] View Profile                          / \\
+                                                 ______________
+                [4] Leaderboard
+                
+                [5] Exit
+                
+                CHOICE: """,delay=0.0005));choice=choice.lower()
+			if choice in ("play game",'1'):
+				efx.Printer("Loading....")
+				game.LoadGame()
+			elif choice in ("game help",'2'):
+				...
+			elif choice in ("view profile",'3'):
+				...
+			elif choice in ("leaderboard",'4'):
+				pass
+			elif choice in ("exit",'5'):
+				choice=efx.Exit(opt='menu')
+				if choice==False: Menu()

@@ -15,19 +15,20 @@ def DataAdder(data):				#Appends new player to the database
 
 
 def Verifier(user,password=None):				#Helps verify player credentials
-	data_file=open("PlayerData.dat","ab+")
 	try:
-		while True:
-			PlayersData=pickle.load(data_file)
-			for Player in PlayersData:
-				if Player["userid"]==user:
-					if password:
-						if Player["passwd"]==password: return "password verified"
-	 					else: return 'incorrect password'
-		 			else: return 'user exists'
+		data_file=open("PlayerData.dat","rb+")
+		PlayersData=pickle.load(data_file)
+		for Player in PlayersData:
+			if Player["userid"]==user:
+				if password:
+					if Player["passwd"]==password: return "verified password"
+					else: return 'incorrect password'
+			else: return 'user exists'
 	except EOFError: return False
+	except FileNotFoundError:
+		data_file=open("PlayerData.dat","wb")
 	finally: data_file.close()
-	
+
 	
 def DataLoader(user):
 	...

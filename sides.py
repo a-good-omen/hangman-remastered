@@ -66,19 +66,18 @@ def CreateAccount():					#Deals with account creation
 
 
 def ExistingLogin(times=0):				#Deals with login for existing players
-	import data
 	while True:
 		efx.Printer("""
 \t\t|  _  _ . _
 \t\t|_(_)(_||| |
 \t\t      _|""",delay=0.004)
-		userid=input(efx.Printer("\n\nEnter display name: ",clear=False))
-		passwd=input(efx.Printer("\nEnter password: ",clear=False))
+		userid=input(efx.Printer("\n\nEnter display name: ",clear=False)); userid.strip()
+		passwd=input(efx.Printer("\nEnter password: ",clear=False)); passwd.strip()
 		if ''==userid or ''==passwd: efx.Printer("All fields are mandatory!"); time.sleep(1); continue
 		
 		efx.Printer("Checking database for matching records....")
 
-		if data.Verifier(userid)=='True':
+		if data.Verifier(userid)=='user exists':
 			efx.Printer("Checking password...")
 			if data.Verifier(userid,passwd)=='incorrect password':
 				efx.Printer("Password is incorrect!")
@@ -99,19 +98,3 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 					elif choice=="3":
 						choice=efx.Exit(opt='login_page')
 						if choice==False: ExistingLogin(times)
-
-
-def LoadGame():					#Loads the main game after login is successfull
-	while True:
-		efx.Printer("Choose Difficulty level\n\n",delay=0.01)
-		efx.Printer(efx.diffics_display,delay=0.001,clear=False)
-		efx.Printer("\n\t     [1] Cursed\t\t\t           [2] Ghost\t\t\t    [3] Phantom",delay=0.005,clear=False)
-		choice=input(efx.Printer("\n\nCHOICE: ",clear=False)); choice.lower()
-		if choice in ("cursed","1"): diffic="Cursed"; break
-		elif choice in ("ghost","2"): diffic="Ghost"; break
-		elif choice in ("phantom","3"): diffic="Phantom"; break
-		
-	efx.Printer("Loading...")
-	efx.Printer("Opening parchment...")
-	efx.Printer("REMEMBER: Lose, and its the end. The hangman shows no mercy and there's no escape!"); time.sleep(1)
-	word=data.LoadWord(Player,diffic)

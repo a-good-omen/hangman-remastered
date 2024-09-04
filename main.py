@@ -1,4 +1,4 @@
-import efx,sides,game
+import efx,sides
 
 def main():
 	efx.Printer(\

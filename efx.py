@@ -1,4 +1,5 @@
-import time,sys,os
+import time
+from sys import exit
 
 lore="""In the late 1900s, a secluded village was haunted by a sinister figure known by the villagers as the Hangman.\nThe legend told of a dark,cursed parchment that appeared in the hands of those who crossed the Hangman’s path.\nThe parchment bore a hidden word that must be guessed to escape.
 
@@ -27,7 +28,7 @@ diffics_display="""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀⠀⠀⠀�
 def ClearScreen():				#Calling this will clear the terminal window (won't work in Python's' IDLE)
 	print("\033[H\033[J")
 
-     
+
 def Printer(text,repetitions=1,clear=True,delay=0.05):					#Deals with dynamic typing effect
 	dot="..." in text
 	if clear: ClearScreen()
@@ -57,12 +58,12 @@ def Exit(opt=False):				#Custom exit function
 
 def Menu():
 		while True:
-			choice=input(efx.Printer(
-f"""                .___  ___.  _______ .__   __.  __    __  
+			choice=input(Printer(
+f"""                .___  ___.  _______ .__   __.  __    __
                 |   \/   | |   ____||  \ |  | |  |  |  |                                  ■ USER: {sides.Player} ■
-                |  \  /  | |  |__   |   \|  | |  |  |  | 
-                |  |\/|  | |   __|  |  . `  | |  |  |  | 
-                |  |  |  | |  |____ |  |\   | |  `--'  | 
+                |  \  /  | |  |__   |   \|  | |  |  |  |
+                |  |\/|  | |   __|  |  . `  | |  |  |  |
+                |  |  |  | |  |____ |  |\   | |  `--'  |
                 |__|  |__| |_______||__| \__|  \______/\n\n
                 [1] Play Game                      _________
                                                            |
@@ -71,19 +72,19 @@ f"""                .___  ___.  _______ .__   __.  __    __
                 [3] View Profile                          / \\
                                                  ______________
                 [4] Leaderboard
-                
+
                 [5] Exit
-                
+
                 CHOICE: """,delay=0.0005));choice=choice.lower()
 			if choice in ("play game",'1'):
-				efx.Printer("Loading....")
+				Printer("Loading....")
 				game.LoadGame()
 			elif choice in ("game help",'2'):
 				...
 			elif choice in ("view profile",'3'):
 				...
 			elif choice in ("leaderboard",'4'):
-				pass
+				...
 			elif choice in ("exit",'5'):
-				choice=efx.Exit(opt='menu')
+				choice=Exit(opt='menu')
 				if choice==False: Menu()

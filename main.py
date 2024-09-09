@@ -16,6 +16,6 @@ def main():
 
 	efx.Printer("Loading....")
 
-	efx.Menu()
+	sides.Menu()
 
 main()

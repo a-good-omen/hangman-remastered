@@ -8,12 +8,12 @@ A terminal based version of the popular word guessing game Hangman. Remastered v
 
 - [X] Python
 #### Python Installation Guide  
-___Step 1: Download Python___  
+___Step 1: Download Python___
 Go [here](https://www.python.org/downloads/) to download the latest version of Python. Choose your operating system and click on "Download".  
 > Python is usually pre-installed on Linux systems. If not, you can install it using package manager.
 
 ___Step 2: Install Python___
-- Windows: Run the installed `.exe` file.  
+- Windows: Run the installed `.exe` file.
 - MacOS: Open the `.pkg` file you installed.
 - Linux: Use the package manager.
 
@@ -23,12 +23,12 @@ ___Step 2: Install Python___
 
 - Better animations and gameplay.
 <p align=center>
-<img alt='intro' src="https://github.com/user-attachments/assets/9991c4ba-cb51-42bf-8610-1965c706c70b">
+  <img alt='intro' src="https://github.com/user-attachments/assets/9991c4ba-cb51-42bf-8610-1965c706c70b">
 </p>
 
 - Players can now save their progress allowing them to continue where they left off.
 <p align=center>
-<img alt='account' src="https://github.com/user-attachments/assets/a96e9969-11e3-47c2-8cf0-7a005bf3922f">
+  <img alt='account' src="https://github.com/user-attachments/assets/a96e9969-11e3-47c2-8cf0-7a005bf3922f">
 </p>
 
 - Added game modes, local leaderboard and cleaner UI.

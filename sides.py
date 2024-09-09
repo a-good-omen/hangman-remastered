@@ -1,4 +1,4 @@
-import time,sys,efx,data
+import time,sys,efx,data,game
 
 Player=None
 
@@ -40,7 +40,7 @@ def CreateAccount():					#Deals with account creation
 
 		if '' in PlayerData.values():
 			efx.Printer("All fields are mandatory!"); time.sleep(0.5); continue
-		
+
 		efx.Printer("Checking data format authenticity....")
 		errors="Seems like the data you entered have the following errors:\n\n"
 		if len(PlayerData["name"])<4:
@@ -74,7 +74,7 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 		userid=input(efx.Printer("\n\nEnter display name: ",clear=False)); userid.strip()
 		passwd=input(efx.Printer("\nEnter password: ",clear=False)); passwd.strip()
 		if ''==userid or ''==passwd: efx.Printer("All fields are mandatory!"); time.sleep(1); continue
-		
+
 		efx.Printer("Checking database for matching records....")
 
 		if data.Verifier(userid)=='user exists':
@@ -98,3 +98,36 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 					elif choice=="3":
 						choice=efx.Exit(opt='login_page')
 						if choice==False: ExistingLogin(times)
+
+def Menu():
+                while True:
+                        choice=input(efx.Printer(
+f"""                .___  ___.  _______ .__   __.  __    __
+                |   \/   | |   ____||  \ |  | |  |  |  |                                  ■ USER: {Player} ■
+                |  \  /  | |  |__   |   \|  | |  |  |  |
+                |  |\/|  | |   __|  |  . `  | |  |  |  |
+                |  |  |  | |  |____ |  |\   | |  `--'  |
+                |__|  |__| |_______||__| \__|  \______/\n\n
+                [1] Play Game                      _________
+                                                           |
+                [2] Game Help                              0
+                                                          /|\\
+                [3] View Profile                          / \\
+                                                 ______________
+                [4] Leaderboard
+
+                [5] Exit
+
+                CHOICE: """,delay=0.0005));choice=choice.lower()
+                        if choice in ("play game",'1'):
+                                efx.Printer("Loading....")
+                                game.LoadGame()
+                        elif choice in ("game help",'2'):
+                                ...
+                        elif choice in ("view profile",'3'):
+                                ...
+                        elif choice in ("leaderboard",'4'):
+                                ...
+                        elif choice in ("exit",'5'):
+                                choice=efx.Exit(opt='menu')
+                                if choice==False: Menu()

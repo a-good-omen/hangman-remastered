@@ -2,7 +2,7 @@ import pickle
 
 def DataAdder(data):				#Appends new player to the database
 	data_file=open("PlayerData.dat","rb+")
-	try:	
+	try:
 		recs=pickle.load(data_file)
 		recs.append(data)
 		recs.sort(key=lambda x: x["name"])
@@ -23,16 +23,21 @@ def Verifier(user,password=None):				#Helps verify player credentials
 				if password:
 					if Player["passwd"]==password: return "verified password"
 					else: return 'incorrect password'
-			else: return 'user exists'
+				else: return 'user exists'
 	except EOFError: return False
 	except FileNotFoundError:
 		data_file=open("PlayerData.dat","wb")
 	finally: data_file.close()
 
-	
+
 def DataLoader(user):
 	...
 
 
 def LoadWord(user,difficulty):
 	...
+
+'''with open("PlayerData.dat","rb") as data_file:
+	data=pickle.load(data_file)
+	print(data)
+'''

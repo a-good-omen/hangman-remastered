@@ -1,8 +1,9 @@
 import efx,sides
+from game import Menu
 
 def main():
 	efx.Printer(\
-"""	  	       _   _    _    _   _  ____ __  __    _    _   _ 
+"""	  	       _   _    _    _   _  ____ __  __    _    _   _
 	  	      | | | |  / \  | \ | |/ ___|  \/  |  / \  | \ | |
 		      | |_| | / _ \ |  \| | |  _| |\/| | / _ \ |  \| |
 		      |  _  |/ ___ \| |\  | |_| | |  | |/ ___ \| |\  |
@@ -16,6 +17,6 @@ def main():
 
 	efx.Printer("Loading....")
 
-	sides.Menu()
+	Menu()
 
 main()

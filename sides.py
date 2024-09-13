@@ -1,4 +1,4 @@
-import time,sys,efx,data,game
+import time,sys,efx,data
 
 Player=None
 
@@ -9,7 +9,7 @@ def PlayerIntro():					#Outputs the lore of the game. Exclusively for first time
 
 
 def LoginSetup():					#Deals with login part of main program
-	global Player,PlayerData
+	global Player
 	while True:
 		choice=input(efx.Printer('Are you a new player?(Y/N) '))
 		choice=choice.upper()
@@ -35,8 +35,8 @@ def CreateAccount():					#Deals with account creation
 \t\t\_,| (/_(_| | (/_  (_|(_(_(_)|_|| | |""",delay=0.004)
 		PlayerData={}
 		PlayerData['name']=input(efx.Printer("\n\nName: ",clear=False)).title()
-		PlayerData['userid']=input(efx.Printer("\nCreate display name: ",clear=False))
-		PlayerData['passwd']=input(efx.Printer("\nCreate password: ",clear=False))
+		PlayerData['userid']=input(efx.Printer("\nCreate display name: ",clear=False)).strip()
+		PlayerData['passwd']=input(efx.Printer("\nCreate password: ",clear=False)).strip()
 
 		if '' in PlayerData.values():
 			efx.Printer("All fields are mandatory!"); time.sleep(0.5); continue
@@ -71,8 +71,8 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 \t\t|  _  _ . _
 \t\t|_(_)(_||| |
 \t\t      _|""",delay=0.004)
-		userid=input(efx.Printer("\n\nEnter display name: ",clear=False)); userid.strip()
-		passwd=input(efx.Printer("\nEnter password: ",clear=False)); passwd.strip()
+		userid=input(efx.Printer("\n\nEnter display name: ",clear=False)); userid=userid.strip()
+		passwd=input(efx.Printer("\nEnter password: ",clear=False)); passwd=passwd.strip()
 		if ''==userid or ''==passwd: efx.Printer("All fields are mandatory!"); time.sleep(1); continue
 
 		efx.Printer("Checking database for matching records....")
@@ -88,46 +88,17 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 
 		else:
 			efx.Printer("No matching record found!"); time.sleep(1)
-			times+=1
-			if times>1:
-				efx.Printer("Hmmm...")
-				while True:
-					choice=input(efx.Printer(f"""Since **{userid}** couldn't be found in the database, would you like to\n\n1. Create Account\n\n2. Try Again\n\n3. Exit\n\nCHOICE: """))
-					if choice =='1': CreateAccount(); break
-					elif choice=='2': ExistingLogin(times); break
-					elif choice=="3":
-						choice=efx.Exit(opt='login_page')
-						if choice==False: ExistingLogin(times)
 
-def Menu():
-                while True:
-                        choice=input(efx.Printer(
-f"""                .___  ___.  _______ .__   __.  __    __
-                |   \/   | |   ____||  \ |  | |  |  |  |                                  ■ USER: {Player} ■
-                |  \  /  | |  |__   |   \|  | |  |  |  |
-                |  |\/|  | |   __|  |  . `  | |  |  |  |
-                |  |  |  | |  |____ |  |\   | |  `--'  |
-                |__|  |__| |_______||__| \__|  \______/\n\n
-                [1] Play Game                      _________
-                                                           |
-                [2] Game Help                              0
-                                                          /|\\
-                [3] View Profile                          / \\
-                                                 ______________
-                [4] Leaderboard
-
-                [5] Exit
-
-                CHOICE: """,delay=0.0005));choice=choice.lower()
-                        if choice in ("play game",'1'):
-                                efx.Printer("Loading....")
-                                game.LoadGame()
-                        elif choice in ("game help",'2'):
-                                ...
-                        elif choice in ("view profile",'3'):
-                                ...
-                        elif choice in ("leaderboard",'4'):
-                                ...
-                        elif choice in ("exit",'5'):
-                                choice=efx.Exit(opt='menu')
-                                if choice==False: Menu()
+			while True:
+				choice=input(efx.Printer(\
+			f"Since **{userid}** couldn't be found in the database, would you like to try something else like,\n\n\
+[1] Create an account\n\n[2] Try Again\n\n[3] Exit\n\nCHOICE: "))
+				if choice =='1':
+					CreateAccount()
+					break
+				elif choice=='2':
+					ExistingLogin(times)
+					break
+				elif choice=="3":
+					choice=efx.Exit(opt='login_page')
+					if choice==False: ExistingLogin()

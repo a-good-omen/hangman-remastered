@@ -1,12 +1,6 @@
-import time,sys,efx,data
+import time,efx,data
 
 Player=None
-
-def PlayerIntro():					#Outputs the lore of the game. Exclusively for first time players
-	time.sleep(0.1)
-	efx.Printer(efx.lore)
-	time.sleep(1)
-
 
 def LoginSetup():					#Deals with login part of main program
 	global Player
@@ -17,9 +11,9 @@ def LoginSetup():					#Deals with login part of main program
 		if choice=="Y":
 			CreateAccount()
 			efx.Printer("Loading....")
-			PlayerIntro()
-			efx.Printer("Log in with your account to play."); time.sleep(0.1)
-			ExistingLogin()
+			efx.Printer(efx.lore,delay=0.005); time.sleep(5)
+			efx.Printer("Log in with your account to play."); time.sleep(0.5)
+			Player=ExistingLogin()
 			break
 
 		elif choice=='N':
@@ -51,28 +45,26 @@ def CreateAccount():					#Deals with account creation
 			errors+="~ Password too weak. Must be atleast 8 characters long!\n\n"
 
 		if errors.count('\n')==2:
-			efx.Printer("Data format valid!");time.sleep(0.05)
+			efx.Printer("Data format valid!");time.sleep(0.5)
 			efx.Printer("Checking for duplication with existing records....")
 			if data.Verifier(PlayerData["userid"])=='user exists':
 				efx.Printer("User with display name already exists! Try logging in?"); time.sleep(0.5); continue
 			data.DataAdder(PlayerData)
-			efx.Printer("No duplication found!")
-			efx.Printer("Account created successfully!")
-			time.sleep(1)
+			efx.Printer("No duplication found!"); time.sleep(0.5)
+			efx.Printer("Account created successfully!"); time.sleep(1)
 			break
 		else:
-			efx.Printer(errors+'Try again i guess?')
-			time.sleep(2)
+			efx.Printer(errors+'Try again i guess?'); time.sleep(2)
 
 
-def ExistingLogin(times=0):				#Deals with login for existing players
+def ExistingLogin():				#Deals with login for existing players
 	while True:
 		efx.Printer("""
 \t\t|  _  _ . _
 \t\t|_(_)(_||| |
 \t\t      _|""",delay=0.004)
-		userid=input(efx.Printer("\n\nEnter display name: ",clear=False)); userid=userid.strip()
-		passwd=input(efx.Printer("\nEnter password: ",clear=False)); passwd=passwd.strip()
+		userid=input(efx.Printer("\n\nEnter display name: ",clear=False)).strip()
+		passwd=input(efx.Printer("\nEnter password: ",clear=False)).strip()
 		if ''==userid or ''==passwd: efx.Printer("All fields are mandatory!"); time.sleep(1); continue
 
 		efx.Printer("Checking database for matching records....")
@@ -80,9 +72,8 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 		if data.Verifier(userid)=='user exists':
 			efx.Printer("Checking password...")
 			if data.Verifier(userid,passwd)=='incorrect password':
-				efx.Printer("Password is incorrect!")
-				efx.Printer("Try again!")
-				time.sleep(1)
+				efx.Printer("Password is incorrect!"); time.sleep(0.5)
+				efx.Printer("Try again!"); time.sleep(1)
 				continue
 			else: return userid
 
@@ -91,13 +82,13 @@ def ExistingLogin(times=0):				#Deals with login for existing players
 
 			while True:
 				choice=input(efx.Printer(\
-			f"Since **{userid}** couldn't be found in the database, would you like to try something else like,\n\n\
+f"Since **{userid}** couldn't be found in the database you must choose to,\n\n\
 [1] Create an account\n\n[2] Try Again\n\n[3] Exit\n\nCHOICE: "))
 				if choice =='1':
 					CreateAccount()
 					break
 				elif choice=='2':
-					ExistingLogin(times)
+					ExistingLogin()
 					break
 				elif choice=="3":
 					choice=efx.Exit(opt='login_page')

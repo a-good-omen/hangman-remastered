@@ -30,12 +30,9 @@ def Verifier(user,password=None):				#Helps verify player credentials
 	finally: data_file.close()
 
 
-def DataLoader(user):
-	...
-
-
 def LoadWord(user,difficulty):
 	...
+
 
 '''with open("PlayerData.dat","rb") as data_file:
 	data=pickle.load(data_file)

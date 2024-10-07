@@ -1,10 +1,11 @@
 import efx,time
+from data import LoadWord
 
 def man(setup=True):
 	if setup: man.parts=["","","","","","","","","",""]
 	man.hangman_display=\
 f"""		                ______________
- 				|             {man.parts[0]}					𓁹  𓁹
+ 				|             {man.parts[0]}					𓁹 O 𓁹
 H				|             {man.parts[1]}
 A				|            {man.parts[2]}{man.parts[3]}{man.parts[4]}
 N				|           {man.parts[5]} {man.parts[6]} {man.parts[7]}
@@ -30,13 +31,13 @@ def LoadGame():					#Loads the main game after login is successfull
 
 	efx.Printer("Opening parchment...")
 	efx.Printer("WORD SELECTED!"); time.sleep(0.5)
-	word="hangman"
+	word=LoadWord(difficulty).lower()
 	status=GameMechanics(word,chances,difficulty)
 
 	if status=="completed":
 		efx.Printer(man.hangman_display,delay=0.005)
 		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False); time.sleep(3)
-		efx.Printer("Whew.. You managed to escape!",clear=False); time.sleep(1)
+		efx.Printer("Whew.. You managed to escape!"); time.sleep(1)
 	else:
 		efx.Printer(man.hangman_display,delay=0.005)
 		efx.Printer("GAME OVER!\n\n",clear=False)
@@ -101,12 +102,12 @@ def Menu():
 	from sides import Player
 	while True:
                         choice=input(efx.Printer(
-f"""                .___  ___.  _______ .__   __.  __    __
-                |   \\/   | |   ____||  \\ |  | |  |  |  |                                  ■ USER: {Player} ■
-                |  \\  /  | |  |__   |   \\|  | |  |  |  |
-                |  |\\/|  | |   __|  |  . `  | |  |  |  |
-                |  |  |  | |  |____ |  |\\   | |  `--'  |
-                |__|  |__| |_______||__| \\__|  \\______/\n\n
+f"""            .___  ___.  _______ .__   __.  __    __
+            |   \\/   | |   ____||  \\ |  | |  |  |  |                                  ■ USER: {Player} ■
+            |  \\  /  | |  |__   |   \\|  | |  |  |  |
+            |  |\\/|  | |   __|  |  . `  | |  |  |  |
+    	    |  |  |  | |  |____ |  |\\   | |  `--'  |
+            |__|  |__| |_______||__| \\__|  \\______/\n\n
                 [1] Play Game                      _________
                                                            |
 		[2] Game Help                              0
@@ -117,12 +118,12 @@ f"""                .___  ___.  _______ .__   __.  __    __
 
                 [5] Exit
 
-                CHOICE: """,delay=0.0005));choice=(choice.lower()).strip()
+            CHOICE: """,delay=0.0005));choice=(choice.lower()).strip()
                         if choice in ("play game",'1'):
                                 efx.Printer("Loading....")
                                 LoadGame()
                         elif choice in ("game help",'2'):
-                                ...
+                                input(efx.Printer(efx.help,delay=0.0005))
                         elif choice in ("view profile",'3'):
                                 ...
                         elif choice in ("leaderboard",'4'):

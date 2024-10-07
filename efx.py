@@ -10,6 +10,7 @@ Though the Hangman disappeared centuries ago, whispers of his curse persist. Tho
 
 **This game has been adapted from this lore."""
 
+
 diffics_display="""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣧⠀⢀                                                                  ⡠⠄⠀⠀⠄⡀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣿⣿⠃⠻⣧⠈⣦                                                                ⠊⢀⣤⣞⣔⢤⡈⠆
@@ -24,6 +25,54 @@ diffics_display="""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀⠀⠀⠀�
 ⠀⠀⠀⠀⠀⠀⠀⣼⣿⠿⠛⠉⠀⠉⠙⠛⠲⠤⠈⠙⠿⣿⣿⡄                                                              ⠈⠀⠐⠁
 ⠀⠀⠀⠀⠀⠀⠰⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠧"""
 
+
+help=r""" 		 ____  ____  ________  _____     _______
+                |_   ||   _||_   __  ||_   _|   |_   __ \
+                  | |__| |    | |_ \_|  | |       | |__) |
+		  |  __  |    |  _| _   | |   _   |  ___/
+		 _| |  | |_  _| |__/ | _| |__/ | _| |_
+		|____||____||________||________||_____|
+
+
+Disclaimer: This game is VERY HARD!
+
+Welcome to the HANGMAN game — an exciting classic word guessing game! If you've played the previously published version, this is just a remastered version of it!
+Test your vocabulary and guessing skills as you navigate through THREE thrilling levels of difficulty.
+
+                     ┌──────────────────────────────────────┐
+                     │            Game Overview             │
+                     └──────────────────────────────────────┘
+
+You will guess a word chosen from one of three difficulty levels.
+The higher the difficulty, the fewer chances you have to win (obvious, right?).
+
+                     ┌──────────────────────────────────────┐
+                     │           Difficulty Levels          │
+                     └──────────────────────────────────────┘
+
+1. Cursed
+   - Chances: 10
+   - Description: The easiest level! You'll encounter shorter and simpler words. Makes the game EASIER for beginners (not EASY)!
+
+2. Ghost
+   - Chances: 8
+   - Description: A moderate challenge. The words here are longer and slightly trickier than those in the Cursed level.
+
+3. Phantom
+   - Chances: 5
+   - Description: The ultimate test! This highest difficulty level features the longest and most challenging words.
+
+                     ┌──────────────────────────────────────┐
+                     │             Key Features             │
+                     └──────────────────────────────────────┘
+
+- Unique Words: No word is repeated across different difficulty levels, so don’t hope to find a word you’ve already guessed in easier modes.
+- Profile Tracking: You’ll be able to check how many words you’ve guessed from each difficulty level in your profile!
+- Local Data Storage: All your game data is stored locally, so you can’t continue playing on another device.
+- Local Leaderboard: Multiple users play on the SAME device? Check where you stand when compared to them in the leaderboard! (Players must be on the same device!)
+- What makes the game harder is that there are no HINTS displayed for the words to be guessed! HAPPY GUESSING!
+
+Are you ready to put your guessing skills to the test?"""
 
 
 def ClearScreen():				#Calling this will clear the terminal window (won't work in Python's' IDLE)

@@ -36,14 +36,14 @@ def LoadGame():					#Loads the main game after login is successfull
 
 	if status=="completed":
 		efx.Printer(man.hangman_display,delay=0.005)
-		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False); time.sleep(3)
-		efx.Printer("Whew.. You managed to escape!"); time.sleep(1)
+		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False); time.sleep(0.5)
+		efx.Printer("Whew.. You managed to escape!",clear=False); time.sleep(5)
 	else:
 		efx.Printer(man.hangman_display,delay=0.005)
 		efx.Printer("GAME OVER!\n\n",clear=False)
 		efx.Printer(f"You failed to guess the word! The word was: {word.upper()}!",clear=False); time.sleep(5)
 		efx.Printer("The hangman got you!"), time.sleep(0.5)
-		efx.Printer("Hanging..."); efx.ClearScreen(); time.sleep(2)
+		efx.Printer("Hanging..."); efx.ClearScreen(); time.sleep(5)
 	Menu()
 
 
@@ -99,11 +99,11 @@ def setup_man(difficulty):
 
 
 def Menu():
-	from sides import Player
+	import sides
 	while True:
                         choice=input(efx.Printer(
 f"""            .___  ___.  _______ .__   __.  __    __
-            |   \\/   | |   ____||  \\ |  | |  |  |  |                                  ■ USER: {Player} ■
+            |   \\/   | |   ____||  \\ |  | |  |  |  |                                  ■ USER: {sides.Player['userid']} ■
             |  \\  /  | |  |__   |   \\|  | |  |  |  |
             |  |\\/|  | |   __|  |  . `  | |  |  |  |
     	    |  |  |  | |  |____ |  |\\   | |  `--'  |
@@ -125,7 +125,7 @@ f"""            .___  ___.  _______ .__   __.  __    __
                         elif choice in ("game help",'2'):
                                 input(efx.Printer(efx.help,delay=0.0005))
                         elif choice in ("view profile",'3'):
-                                ...
+                                sides.Profile()
                         elif choice in ("leaderboard",'4'):
                                 ...
                         elif choice in ("exit",'5'):

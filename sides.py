@@ -1,9 +1,10 @@
 import time,efx,data
 
+
 Player=None
 
+
 def LoginSetup():					#Deals with login part of main program
-	global Player
 	while True:
 		choice=input(efx.Printer('Are you a new player?(Y/N) '))
 		choice=choice.upper()
@@ -11,9 +12,9 @@ def LoginSetup():					#Deals with login part of main program
 		if choice=="Y":
 			CreateAccount()
 			efx.Printer("Loading....")
-			efx.Printer(efx.lore,delay=0.005); time.sleep(5)
+			efx.Printer(efx.lore,delay=0.005); time.sleep(7)
 			efx.Printer("Log in with your account to play."); time.sleep(0.5)
-			Player=ExistingLogin()
+			ExistingLogin()
 			break
 
 		elif choice=='N':
@@ -58,6 +59,7 @@ def CreateAccount():					#Deals with account creation
 
 
 def ExistingLogin():				#Deals with login for existing players
+	global Player
 	while True:
 		efx.Printer("""
 \t\t|  _  _ . _
@@ -75,7 +77,9 @@ def ExistingLogin():				#Deals with login for existing players
 				efx.Printer("Password is incorrect!"); time.sleep(0.5)
 				efx.Printer("Try again!"); time.sleep(1)
 				continue
-			else: return userid
+			else:
+				Player=data.LoadData(userid)
+				break
 
 		else:
 			efx.Printer("No matching record found!"); time.sleep(1)
@@ -93,3 +97,22 @@ f"Since **{userid}** couldn't be found in the database you must choose to,\n\n\
 				elif choice=="3":
 					choice=efx.Exit(opt='login_page')
 					if choice==False: ExistingLogin()
+
+
+def Profile():
+	while True:
+		Profile_display=f"""
+\t\t\t _  _  _  _ ___    __
+\t\t\t|_)|_)/ \|_  | |  |_ 
+\t\t\t|  | \\\\_/|  _|_|__|__
+\n\tᑎᗩᗰE : {Player['name']}
+\n\tᑌSEᖇᑎᗩᗰE : {Player['userid']}
+\n\tᑭᗩSSᗯOᖇᗪ : {"*"*len(Player['passwd'])}
+\n\n\n\nYou would like to?\n\n[1] Show Password\t[2] Edit Profile\t[3] View Game Progress\n
+CHOICE: """
+		choice=input(efx.Printer(Profile_display,delay=0.005)).lower()
+
+		if choice in ('show password','1'): ...
+		elif choice in ('edit profile','2'): ...
+		elif choice in ('view progress','3'): ...
+		else: break

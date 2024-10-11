@@ -17,8 +17,9 @@ ___Step 2: Install Python___
 - MacOS: Open the `.pkg` file you installed.
 - Linux: Use the package manager.
 
-**Install pip if needed.**
+## How to Play
 
+Tell you later! >_<
 ## ++ Features
 
 - Better animations and gameplay.
@@ -33,7 +34,7 @@ ___Step 2: Install Python___
 
 - Added game modes, local leaderboard and cleaner UI.
 <p align=center>
-  <img alt='menu' src="https://github.com/user-attachments/assets/2acd85d8-5cd0-452f-a886-44c751fbf3ba">
+  <img alt='menu' src="https://github.com/user-attachments/assets/472e814a-3ab6-45bf-8a03-f25854a03a48">
 </p>
 
 **and there's more...**

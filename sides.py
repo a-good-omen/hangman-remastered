@@ -1,8 +1,6 @@
 import time,efx,data
 
-
 Player=None
-
 
 def LoginSetup():					#Deals with login part of main program
 	while True:
@@ -78,7 +76,7 @@ def ExistingLogin():				#Deals with login for existing players
 				efx.Printer("Try again!"); time.sleep(1)
 				continue
 			else:
-				Player=data.LoadData(userid)
+				Player=data.DataManager(userid,task='load')
 				break
 
 		else:
@@ -100,19 +98,50 @@ f"Since **{userid}** couldn't be found in the database you must choose to,\n\n\
 
 
 def Profile():
+	global Player
+	passwd='*'*len(Player['passwd']);text='[sp] Show Password\t'
 	while True:
 		Profile_display=f"""
-\t\t\t _  _  _  _ ___    __
-\t\t\t|_)|_)/ \|_  | |  |_ 
-\t\t\t|  | \\\\_/|  _|_|__|__
+\t\t _  _  _  _ ___    __
+\t\t|_)|_)/ \|_  | |  |_ 
+\t\t|  | \\\\_/|  _|_|__|__
 \n\tᑎᗩᗰE : {Player['name']}
 \n\tᑌSEᖇᑎᗩᗰE : {Player['userid']}
-\n\tᑭᗩSSᗯOᖇᗪ : {"*"*len(Player['passwd'])}
-\n\n\n\nYou would like to?\n\n[1] Show Password\t[2] Edit Profile\t[3] View Game Progress\n
+\n\tᑭᗩSSᗯOᖇᗪ : {passwd}
+\n\n\n\nYou would like to?\n\n{text}[edp] Edit Profile\t[vgp] View Game Progress\t[ng] Do Nothing\n
 CHOICE: """
-		choice=input(efx.Printer(Profile_display,delay=0.005)).lower()
+		choice=input(efx.Printer(Profile_display,delay=0.005)).lower().strip()
 
-		if choice in ('show password','1'): ...
-		elif choice in ('edit profile','2'): ...
-		elif choice in ('view progress','3'): ...
-		else: break
+		if choice in ('show password','sp'):
+			passwd=Player['passwd']
+			text=''
+
+		elif choice in ('edit profile','edp'):
+			TPlayer=Player.copy(); txt="What would you like to change?"
+
+			while True:
+				choice=input(efx.Printer(f'{txt}\n\n[1] Name\t\t[2] Username\t\t[3] Password\t\t[4] Nothing\n\nCHOICE: ',delay=0.005)).lower().strip()
+				if choice in ('1','name'):
+					name=input(efx.Printer('New Name: '))
+					TPlayer['name']=name
+				elif choice in ('2','username'):
+					while True:
+						userid=input(efx.Printer('New Username: '))
+						if data.Verifier(userid)!='user exists': TPlayer['userid']=userid; break
+						else: efx.Printer('Another user with the username already exists!'); time.sleep(1)
+				elif choice in ('3','password'):
+					passwd=input(efx.Printer('New Password: '))
+					TPlayer['passwd']=passwd
+				elif choice in ('4','nothing'): break
+				
+				efx.Printer("Applying changes...")
+				data.DataAdder(TPlayer,rmv=Player)
+				txt="Any more changes?"
+			
+			Player.update(TPlayer)
+
+		elif choice in ('view progress','vgp'):
+			...
+		
+		elif choice in ('nothing','ng'): break
+		

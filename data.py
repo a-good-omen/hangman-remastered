@@ -1,18 +1,19 @@
 import pickle
 from random import choice
 
-
-def DataAdder(data):				#Appends new player to the database
+def DataAdder(data,rmv=None):				#Appends new player to the database
 	data_file=open("PlayerData.dat","rb+")
 	try:
 		recs=pickle.load(data_file)
 		recs.append(data)
+		recs.remove(rmv)
 		recs.sort(key=lambda x: x["name"])
 		data_file.seek(0)
 		pickle.dump(recs,data_file)
 	except EOFError:
 		recs=[]; recs.append(data)
 		pickle.dump(recs,data_file)
+	except ValueError: pass
 	finally: data_file.close()
 
 
@@ -40,8 +41,15 @@ def LoadWord(difficulty):				#Selects the word to guess
 			if count==times[difficulty]: return choice(words)
 
 
-def LoadData(userid):			#Loads "userid's" data from the database
-	with open("PlayerData.dat","rb") as data_file:
+def DataManager(userid,task,data=None):			#Manages "userid's" data from the database
+	with open("PlayerData.dat","ab+") as data_file:
+		data_file.seek(0)
 		PlayerData=pickle.load(data_file)
-	for player in PlayerData:
-				if player['userid']==userid: return player
+		for player in PlayerData:
+			if player['userid']==userid: 
+				if task=='load':
+					return player
+				elif task=='edit':
+					player.update(data)
+					data_file.seek(0)
+					pickle.dump(PlayerData,data_file)

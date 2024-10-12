@@ -41,15 +41,8 @@ def LoadWord(difficulty):				#Selects the word to guess
 			if count==times[difficulty]: return choice(words)
 
 
-def DataManager(userid,task,data=None):			#Manages "userid's" data from the database
-	with open("PlayerData.dat","ab+") as data_file:
-		data_file.seek(0)
+def LoadData(userid):			#Loads "userid's" data from the database
+	with open("PlayerData.dat","rb") as data_file:
 		PlayerData=pickle.load(data_file)
-		for player in PlayerData:
-			if player['userid']==userid: 
-				if task=='load':
-					return player
-				elif task=='edit':
-					player.update(data)
-					data_file.seek(0)
-					pickle.dump(PlayerData,data_file)
+	for player in PlayerData:
+		if player['userid']==userid: return player

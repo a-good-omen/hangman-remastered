@@ -76,7 +76,7 @@ def ExistingLogin():				#Deals with login for existing players
 				efx.Printer("Try again!"); time.sleep(1)
 				continue
 			else:
-				Player=data.DataManager(userid,task='load')
+				Player=data.LoadData(userid)
 				break
 
 		else:
@@ -133,7 +133,7 @@ CHOICE: """
 					passwd=input(efx.Printer('New Password: '))
 					TPlayer['passwd']=passwd
 				elif choice in ('4','nothing'): break
-				
+
 				efx.Printer("Applying changes...")
 				data.DataAdder(TPlayer,rmv=Player)
 				txt="Any more changes?"

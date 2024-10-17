@@ -1,6 +1,6 @@
-import time
+import os
+from time import sleep
 from sys import exit
-
 
 lore="""
 In the late 1900s, a secluded village was haunted by a sinister figure known by the villagers as the Hangman.\nThe legend told of a dark,cursed parchment that appeared in the hands of those who crossed the Hangman’s path.\nThe parchment bore a hidden word that must be guessed to escape.
@@ -12,7 +12,8 @@ Though the Hangman disappeared centuries ago, whispers of his curse persist. Tho
 **ADAPTED"""
 
 
-diffics_display="""⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+diffics_display="""
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣧⠀⢀                                                                  ⡠⠄⠀⠀⠄⡀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣿⣿⠃⠻⣧⠈⣦                                                                ⠊⢀⣤⣞⣔⢤⡈⠆
 ⠀⠀⠀⠀⠀⠀⠀⠤⠴⠶⠿⢿⣿⡿⠁⠀⠀⠈⠆⠘⣷⡄                                                            ⠄⢠⣿⣧⣿⣿⣟⠇⠈⠢⡀
@@ -37,8 +38,8 @@ help=r""" 			 ____  ____  ________  _____     _______
 
 Disclaimer: This game is VERY HARD!
 
-Welcome to the HANGMAN game — an exciting classic word guessing game! If you've played the previously published version; this is just a remastered version of it!
-Your skills will be tested as you navigate through THREE thrilling levels of difficulty.
+Welcome to the HANGMAN game — an exciting classic word guessing game! If you've played the previously published version;
+this is just a remastered version of it! Your skills will be tested as you navigate through THREE thrilling levels of difficulty.
 
                      ┌──────────────────────────────────────┐
                      │            Game Overview             │
@@ -53,7 +54,7 @@ The higher the difficulty, the fewer chances you have to win (obvious, right?).
 
 [1] CURSED
    - Chances: 10
-   - Description: The easiest level! You'll encounter shorter and simpler words. Makes the game EASIER for beginners (not EASY)!
+   - Description: The easiest level! You'll encounter shorter and simpler words. Makes the game EASIER for beginners!
 
 [2] GHOST
    - Chances: 8
@@ -73,28 +74,29 @@ The higher the difficulty, the fewer chances you have to win (obvious, right?).
 
 - Local Data Storage: All your game data is stored locally, so you can’t continue playing on another device.
 
-- Local Leaderboard: Multiple users play on the SAME device? Check where you stand when compared to them in the leaderboard! (Players must be on the same device!)
+- Local Leaderboard: Multiple users play on the SAME device? Check where you stand when compared to them in the leaderboard! (Players
+   must be on the same device!)
 
 - This game was never meant to be played!!
 
 
-Ready?"""
+↲ Press ENTER to continue!"""
 
 
 def ClearScreen():				#Calling this will clear the terminal window (won't work in Python's' IDLE)
-	print("\033[H\033[J")  
+	if os.name=='nt': os.system('cls')
+	else: os.system('clear')
 
 
-def Printer(text,repetitions=1,clear=True,delay=0.05):					#Deals with dynamic typing effect
+def Printer(text,clear=True,delay=0.05):					#Deals with dynamic typing effect
 	dot="..." in text
 
 	if clear: ClearScreen()
 
-	for i in range(repetitions):
-		for j in text:
-			time.sleep(0.9 if dot and j=='.' else delay)
-			print(j,end='',flush=True)
-		time.sleep(0.05)
+	for j in text:
+		sleep(0.9 if dot and j=='.' else delay)
+		print(j,end='',flush=True)
+	sleep(0.05)
 
 	return ''
 
@@ -106,5 +108,5 @@ def Exit(opt=False):				#Custom exit function
 			Printer("Exiting..."); ClearScreen()
 			exit()
 		elif choice=='N':
-			Printer("Exit request terminated!"); time.sleep(0.5)
+			Printer("Exit request terminated!"); sleep(0.5)
 			return False

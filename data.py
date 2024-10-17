@@ -34,7 +34,7 @@ def Verifier(user,password=None):				#Helps verify player credentials
 
 
 def LoadWord(difficulty):				#Selects the word to guess
-	with open("words.dat","rb") as word_file:
+	with open("Words.dat","rb") as word_file:
 		times={"Cursed":0,"Ghost":1,"Phantom":2}
 		for count in range(times[difficulty]+1):
 			words=pickle.load(word_file)

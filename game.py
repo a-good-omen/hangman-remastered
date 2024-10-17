@@ -1,7 +1,7 @@
 import efx,time
 from data import LoadWord
 
-def man(setup=True):
+def man(setup=True):				#Making this a function allows recalling later during GameMechanics
 	if setup: man.parts=["","","","","","","","","",""]
 	man.hangman_display=\
 f"""		                ______________
@@ -31,7 +31,7 @@ def LoadGame():					#Loads the main game after login is successfull
 
 	efx.Printer("Opening parchment...")
 	efx.Printer("WORD SELECTED!"); time.sleep(0.5)
-	word=LoadWord(difficulty).lower()
+	word=LoadWord(difficulty)
 	status=GameMechanics(word,chances,difficulty)
 
 	if status=="completed":
@@ -47,17 +47,20 @@ def LoadGame():					#Loads the main game after login is successfull
 	Menu()
 
 
-def GameMechanics(word,chances,difficulty):
+def GameMechanics(word,chances,difficulty):				#Handles the game's mechanics,i.e. how it works
 	wrd_display=('_ '*len(word)).rstrip()
-
+	guess=''
 	while chances:
-		efx.ClearScreen(); time.sleep(0.1)
+
+		if wrd_display.split()==list(word): return "completed"
+
+		time.sleep(0.1)
 		efx.Printer(man.hangman_display,delay=0.0005 )
 		efx.Printer(f"\tWORD STATUS: {wrd_display}\t\t\t[contains {wrd_display.count('_')} letters more to guess!]",clear=False,delay=0.005)
 		guess=input(efx.Printer(f"\n\nYour Guess ({chances} left): ",clear=False)).lower(); guess=guess.strip()
 
-		if guess==word or wrd_display.split()==list(word): return "completed"
-		elif len(guess)==len(word) and guess!=word: 
+		if guess==word: return "completed"
+		elif len(guess)==len(word) and guess!=word:
 			efx.Printer("Incorrect guess!"); time.sleep(0.5)
 			setup_man(difficulty)
 			chances-=1
@@ -69,8 +72,14 @@ def GameMechanics(word,chances,difficulty):
 			continue
 
 		if guess in word:
-			efx.Printer("Letter exists!"); time.sleep(0.5)
-			wrd_display=update_display(guess,word,wrd_display)
+			efx.Printer("Letter exists in the word!"); time.sleep(0.5)
+
+			if word.count(guess)>1 and word.count(guess)==wrd_display.count(guess):
+				efx.Printer(f"No more {guess.upper()}'s in the word!")
+				time.sleep(0.5)
+				continue
+
+			wrd_display=update_display(guess,word,wrd_display,difficulty)
 
 		else:
 			efx.Printer("Incorect guess!")
@@ -78,27 +87,27 @@ def GameMechanics(word,chances,difficulty):
 			chances-=1
 
 
-def update_display(guess,word,display):
+def update_display(guess,word,display,difficulty):				#Changes word display at each correct guess
 	for pos,letter in enumerate(word):
 		if letter==guess and display[2*pos]=='_':
 			display=display[:(2*pos)]+guess+display[(2*pos)+1:]
-			break
+		if word.count(guess)==display.count(guess): break
 
 	return display
 
 
-def setup_man(difficulty):
+def setup_man(difficulty):				#Updates hangman display at each incorrect guess
 	Nparts=["|","|","_","O","_","/","|","\\","/","\\"]
 	pace=1
-	
+
 	if difficulty=='Phantom': pace=2
-	
+
 	status=man.parts.index("")
 	man.parts[status:status+pace]=Nparts[status:status+pace]
 	man(setup=False)
 
 
-def Menu():
+def Menu():				#Includes the dynamic game menu
 	import sides
 	while True:
                         choice=input(efx.Printer(

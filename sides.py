@@ -103,12 +103,12 @@ def Profile():
 	while True:
 		Profile_display=f"""
 \t\t _  _  _  _ ___    __
-\t\t|_)|_)/ \|_  | |  |_ 
+\t\t|_)|_)/ \|_  | |  |_
 \t\t|  | \\\\_/|  _|_|__|__
 \n\tᑎᗩᗰE : {Player['name']}
 \n\tᑌSEᖇᑎᗩᗰE : {Player['userid']}
 \n\tᑭᗩSSᗯOᖇᗪ : {passwd}
-\n\n\n\nYou would like to?\n\n{text}[edp] Edit Profile\t[vgp] View Game Progress\t[ng] Do Nothing\n
+\n\n\n\nYou would like to?\n\n{text}[edp] Edit Profile\t[vgp] View Game Progress\t[ng] Do Nothing(for going back)\n
 CHOICE: """
 		choice=input(efx.Printer(Profile_display,delay=0.005)).lower().strip()
 
@@ -137,11 +137,10 @@ CHOICE: """
 				efx.Printer("Applying changes...")
 				data.DataAdder(TPlayer,rmv=Player)
 				txt="Any more changes?"
-			
+
 			Player.update(TPlayer)
 
 		elif choice in ('view progress','vgp'):
 			...
-		
-		elif choice in ('nothing','ng'): break
-		
+
+		elif choice in ('do nothing','ng'): break

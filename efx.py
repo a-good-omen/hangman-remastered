@@ -77,8 +77,6 @@ The higher the difficulty, the fewer chances you have to win (obvious, right?).
 - Local Leaderboard: Multiple users play on the SAME device? Check where you stand when compared to them in the leaderboard! (Players
    must be on the same device!)
 
-- This game was never meant to be played!!
-
 
 ↲ Press ENTER to continue!"""
 

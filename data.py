@@ -6,14 +6,14 @@ def DataAdder(data,rmv=None):				#Appends new player to the database
 	try:
 		recs=pickle.load(data_file)
 		recs.append(data)
-		recs.remove(rmv)
+		if rmv!=None: recs.remove(rmv)
 		recs.sort(key=lambda x: x["name"])
 		data_file.seek(0)
 		pickle.dump(recs,data_file)
+		data_file.truncate()
 	except EOFError:
 		recs=[]; recs.append(data)
 		pickle.dump(recs,data_file)
-	except ValueError: pass
 	finally: data_file.close()
 
 

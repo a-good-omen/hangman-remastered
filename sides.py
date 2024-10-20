@@ -26,7 +26,7 @@ def CreateAccount():					#Deals with account creation
 		efx.Printer("""
 \t\t/ ` _ _  _ _|_ _    _  _ _ _     _ _|_
 \t\t\_,| (/_(_| | (/_  (_|(_(_(_)|_|| | |""",delay=0.004)
-		PlayerData={}
+		PlayerData={'data':[0,0,0]}
 		PlayerData['name']=input(efx.Printer("\n\nName: ",clear=False)).title()
 		PlayerData['userid']=input(efx.Printer("\nCreate display name: ",clear=False)).strip()
 		PlayerData['passwd']=input(efx.Printer("\nCreate password: ",clear=False)).strip()
@@ -83,9 +83,9 @@ def ExistingLogin():				#Deals with login for existing players
 			efx.Printer("No matching record found!"); time.sleep(1)
 
 			while True:
-				choice=input(efx.Printer(\
-f"Since **{userid}** couldn't be found in the database you must choose to,\n\n\
-[1] Create an account\n\n[2] Try Again\n\n[3] Exit\n\nCHOICE: "))
+				choice=input(efx.Printer(
+f"""Since **{userid}** couldn't be found in the database you must choose to,\n
+\t[1] Create an account\n\n\t[2] Try Again\n\n\t[3] Exit\n\nCHOICE: """))
 				if choice =='1':
 					CreateAccount()
 					break
@@ -99,7 +99,7 @@ f"Since **{userid}** couldn't be found in the database you must choose to,\n\n\
 
 def Profile():
 	global Player
-	passwd='*'*len(Player['passwd']);text='[sp] Show Password\t'
+	passwd='*'*len(Player['passwd']);text='[sp] See Password\t'
 	while True:
 		Profile_display=f"""
 \t\t _  _  _  _ ___    __
@@ -108,11 +108,11 @@ def Profile():
 \n\tᑎᗩᗰE : {Player['name']}
 \n\tᑌSEᖇᑎᗩᗰE : {Player['userid']}
 \n\tᑭᗩSSᗯOᖇᗪ : {passwd}
-\n\n\n\nYou would like to?\n\n{text}[edp] Edit Profile\t[vgp] View Game Progress\t[ng] Do Nothing(for going back)\n
+\n\n\n\n\t{text}[edp] Edit Profile\t[sgp] See Game Progress\t\t[ng] Do Nothing(go back)\n
 CHOICE: """
 		choice=input(efx.Printer(Profile_display,delay=0.005)).lower().strip()
 
-		if choice in ('show password','sp'):
+		if choice in ('see password','sp'):
 			passwd=Player['passwd']
 			text=''
 
@@ -122,25 +122,35 @@ CHOICE: """
 			while True:
 				choice=input(efx.Printer(f'{txt}\n\n[1] Name\t\t[2] Username\t\t[3] Password\t\t[4] Nothing\n\nCHOICE: ',delay=0.005)).lower().strip()
 				if choice in ('1','name'):
-					name=input(efx.Printer('New Name: '))
-					TPlayer['name']=name
+					while True:
+						name=input(efx.Printer('\nNew Name: '))
+						if len(name)>=4: TPlayer['name']=name; break
+						else: efx.Printer("Name doesn't appear to be authentic!"); time.sleep(0.5)
 				elif choice in ('2','username'):
 					while True:
-						userid=input(efx.Printer('New Username: '))
+						userid=input(efx.Printer('\nNew Username: '))
 						if data.Verifier(userid)!='user exists': TPlayer['userid']=userid; break
-						else: efx.Printer('Another user with the username already exists!'); time.sleep(1)
+						else: efx.Printer('A user with the username already exists!'); time.sleep(0.5)
 				elif choice in ('3','password'):
-					passwd=input(efx.Printer('New Password: '))
-					TPlayer['passwd']=passwd
-				elif choice in ('4','nothing'): break
+					while True:
+						passwd=input(efx.Printer('New Password: '))
+						if len(passwd)>=8: TPlayer['passwd']=passwd; break
+						else: efx.Printer('Password must be atleast 8 characters long!'); time.sleep(0.5)
+				elif choice in ('4','nothing'):
+					break
 
 				efx.Printer("Applying changes...")
 				data.DataAdder(TPlayer,rmv=Player)
 				txt="Any more changes?"
+				Player.update(TPlayer)
+			passwd="*"*len(Player['ṕasswd'])
 
-			Player.update(TPlayer)
 
-		elif choice in ('view progress','vgp'):
-			...
+		elif choice in ('see game progress','sgp'):
+			efx.Printer(efx.diffics_display,delay=0.0005)
+			prog=Player['data']
+			efx.Printer(f"\n\t     {prog[0]}/50\t\t\t\t{prog[1]}/50\t\t\t\t    {prog[2]}/50",clear=False,delay=0.005)
+			efx.Printer(f"\n\t      {prog[0]*2}%\t\t\t\t {prog[1]*2}%\t\t\t\t     {prog[2]*2}%",clear=False,delay=0.005)
+			input(efx.Printer('↲ Press ENTER to continue!',clear=False,delay=0.005))
 
 		elif choice in ('do nothing','ng'): break

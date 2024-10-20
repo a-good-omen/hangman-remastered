@@ -1,5 +1,5 @@
-import efx,time
-from data import LoadWord
+import efx,time,data,sides
+from copy import deepcopy
 
 def man(setup=True):				#Making this a function allows recalling later during GameMechanics
 	if setup: man.parts=["","","","","","","","","",""]
@@ -19,25 +19,29 @@ N				|
 
 
 def LoadGame():					#Loads the main game after login is successfull
-	man()						#Called here so that the function attributes are defined and accessible every new game
+	man()					#Called here so that the function attributes are defined and accessible every new game
+	TPlayer=deepcopy(sides.Player)
+	prog=TPlayer['data']
 	while True:
 		efx.Printer("Choose Difficulty level\n\n",delay=0.01)
 		efx.Printer(efx.diffics_display,delay=0.000005,clear=False)
-		efx.Printer("\n\t  [1] Cursed\t\t\t      [2] Ghost\t\t\t         [3] Phantom",delay=0.005,clear=False)
+		efx.Printer("\n\t  [1] CURSED\t\t\t     [2] GHOST\t\t\t         [3] PHANTOM",delay=0.005,clear=False)
 		choice=input(efx.Printer("\n\nCHOICE: ",clear=False)); choice.lower()
-		if choice in ("cursed","1"): difficulty="Cursed"; chances=10; break
-		elif choice in ("ghost","2"): difficulty="Ghost"; chances=8; man.parts[:2]=["|","|"]; man(setup=False); break
-		elif choice in ("phantom","3"): difficulty="Phantom";chances=5; break
+		if choice in ("cursed","1"): difficulty="Cursed"; chances,code=10,0; break
+		elif choice in ("ghost","2"): difficulty="Ghost"; chances,code=8,1; man.parts[:2]=["|","|"]; man(setup=False); break
+		elif choice in ("phantom","3"): difficulty="Phantom";chances,code=5,2; break
 
 	efx.Printer("Opening parchment...")
 	efx.Printer("WORD SELECTED!"); time.sleep(0.5)
-	word=LoadWord(difficulty)
+	word=data.LoadWord(difficulty)
 	status=GameMechanics(word,chances,difficulty)
 
 	if status=="completed":
 		efx.Printer(man.hangman_display,delay=0.005)
 		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False); time.sleep(0.5)
+		prog[code]+=1; data.DataAdder(TPlayer,rmv=sides.Player)
 		efx.Printer("Whew.. You managed to escape!",clear=False); time.sleep(5)
+		(sides.Player).update(TPlayer)
 	else:
 		efx.Printer(man.hangman_display,delay=0.005)
 		efx.Printer("GAME OVER!\n\n",clear=False)
@@ -108,7 +112,6 @@ def setup_man(difficulty):				#Updates hangman display at each incorrect guess
 
 
 def Menu():				#Includes the dynamic game menu
-	import sides
 	while True:
                         choice=input(efx.Printer(
 f"""            .___  ___.  _______ .__   __.  __    __
@@ -121,7 +124,7 @@ f"""            .___  ___.  _______ .__   __.  __    __
                                                            |
 		[2] Game Help                              0
                                                           /|\\
-                [3] View Profile                          / \\
+                [3] Profile                               / \\
                                                  ______________
                 [4] Leaderboard
 

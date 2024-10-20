@@ -10,7 +10,7 @@ def LoginSetup():					#Deals with login part of main program
 		if choice=="Y":
 			CreateAccount()
 			efx.Printer("Loading....")
-			efx.Printer(efx.lore,delay=0.005); time.sleep(7)
+			input(efx.Printer(efx.lore+'\n\n\n\n\n\n↲ Press ENTER to continue!',delay=0.005))
 			efx.Printer("Log in with your account to play."); time.sleep(0.5)
 			ExistingLogin()
 			break
@@ -26,7 +26,7 @@ def CreateAccount():					#Deals with account creation
 		efx.Printer("""
 \t\t/ ` _ _  _ _|_ _    _  _ _ _     _ _|_
 \t\t\_,| (/_(_| | (/_  (_|(_(_(_)|_|| | |""",delay=0.004)
-		PlayerData={'data':[0,0,0]}
+		PlayerData={'data':[0,0,0],'words':[]}
 		PlayerData['name']=input(efx.Printer("\n\nName: ",clear=False)).title()
 		PlayerData['userid']=input(efx.Printer("\nCreate display name: ",clear=False)).strip()
 		PlayerData['passwd']=input(efx.Printer("\nCreate password: ",clear=False)).strip()
@@ -86,20 +86,21 @@ def ExistingLogin():				#Deals with login for existing players
 				choice=input(efx.Printer(
 f"""Since **{userid}** couldn't be found in the database you must choose to,\n
 \t[1] Create an account\n\n\t[2] Try Again\n\n\t[3] Exit\n\nCHOICE: """))
-				if choice =='1':
+				if choice in ('1','create an account'):
 					CreateAccount()
 					break
-				elif choice=='2':
+				elif choice in ('2','try again'):
 					ExistingLogin()
 					break
-				elif choice=="3":
-					choice=efx.Exit(opt='login_page')
+				elif choice in ("3",'exit'):
+					choice=efx.Exit()
 					if choice==False: ExistingLogin()
 
 
 def Profile():
 	global Player
 	passwd='*'*len(Player['passwd']);text='[sp] See Password\t'
+
 	while True:
 		Profile_display=f"""
 \t\t _  _  _  _ ___    __
@@ -133,17 +134,20 @@ CHOICE: """
 						else: efx.Printer('A user with the username already exists!'); time.sleep(0.5)
 				elif choice in ('3','password'):
 					while True:
-						passwd=input(efx.Printer('New Password: '))
+						passwd=input(efx.Printer('\nNew Password: '))
 						if len(passwd)>=8: TPlayer['passwd']=passwd; break
 						else: efx.Printer('Password must be atleast 8 characters long!'); time.sleep(0.5)
 				elif choice in ('4','nothing'):
 					break
 
+				txt="Any more changes?"
+
+			if TPlayer!=Player:
 				efx.Printer("Applying changes...")
 				data.DataAdder(TPlayer,rmv=Player)
-				txt="Any more changes?"
 				Player.update(TPlayer)
-			passwd="*"*len(Player['ṕasswd'])
+
+			passwd="*"*len(Player['passwd']);text='[sp] See Password\t'
 
 
 		elif choice in ('see game progress','sgp'):
@@ -151,6 +155,6 @@ CHOICE: """
 			prog=Player['data']
 			efx.Printer(f"\n\t     {prog[0]}/50\t\t\t\t{prog[1]}/50\t\t\t\t    {prog[2]}/50",clear=False,delay=0.005)
 			efx.Printer(f"\n\t      {prog[0]*2}%\t\t\t\t {prog[1]*2}%\t\t\t\t     {prog[2]*2}%",clear=False,delay=0.005)
-			input(efx.Printer('↲ Press ENTER to continue!',clear=False,delay=0.005))
+			input(efx.Printer('\n\n\n\n\n\n↲ Press ENTER to continue',clear=False,delay=0.005))
 
 		elif choice in ('do nothing','ng'): break

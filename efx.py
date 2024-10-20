@@ -36,8 +36,6 @@ help=r""" 			 ____  ____  ________  _____     _______
 			|____||____||________||________||_____|
 
 
-Disclaimer: This game is VERY HARD!
-
 Welcome to the HANGMAN game — an exciting classic word guessing game! If you've played the previously published version;
 this is just a remastered version of it! Your skills will be tested as you navigate through THREE thrilling levels of difficulty.
 
@@ -86,7 +84,7 @@ def ClearScreen():				#Calling this will clear the terminal window (won't work i
 	else: os.system('clear')
 
 
-def Printer(text,clear=True,delay=0.05):					#Deals with dynamic typing effect
+def Printer(text,clear=True,delay=0.03):					#Deals with dynamic typing effect
 	dot="..." in text
 
 	if clear: ClearScreen()
@@ -99,12 +97,14 @@ def Printer(text,clear=True,delay=0.05):					#Deals with dynamic typing effect
 	return ''
 
 
-def Exit(opt=False):				#Custom exit function
+def Exit():				#Custom exit function
 	while True:
 		choice=input(Printer("Are you sure you want to exit?(Y/N) ")).upper()
+
 		if choice=='Y':
 			Printer("Exiting..."); ClearScreen()
 			exit()
+
 		elif choice=='N':
 			Printer("Exit request terminated!"); sleep(0.5)
 			return False

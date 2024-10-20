@@ -21,7 +21,7 @@ N				|
 def LoadGame():					#Loads the main game after login is successfull
 	man()					#Called here so that the function attributes are defined and accessible every new game
 	TPlayer=deepcopy(sides.Player)
-	prog=TPlayer['data']
+	prog=TPlayer['data'];wprog=TPlayer['words']
 	while True:
 		efx.Printer("Choose Difficulty level\n\n",delay=0.01)
 		efx.Printer(efx.diffics_display,delay=0.000005,clear=False)
@@ -33,14 +33,15 @@ def LoadGame():					#Loads the main game after login is successfull
 
 	efx.Printer("Opening parchment...")
 	efx.Printer("WORD SELECTED!"); time.sleep(0.5)
-	word=data.LoadWord(difficulty)
+	word=data.LoadWord(difficulty,wprog)
 	status=GameMechanics(word,chances,difficulty)
 
 	if status=="completed":
 		efx.Printer(man.hangman_display,delay=0.005)
 		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False); time.sleep(0.5)
-		prog[code]+=1; data.DataAdder(TPlayer,rmv=sides.Player)
-		efx.Printer("Whew.. You managed to escape!",clear=False); time.sleep(5)
+		prog[code]+=1; wprog.append(word)
+		data.DataAdder(TPlayer,rmv=sides.Player)
+		efx.Printer("Whew.. You managed to escape!",clear=False); time.sleep(3.5)
 		(sides.Player).update(TPlayer)
 	else:
 		efx.Printer(man.hangman_display,delay=0.005)
@@ -139,7 +140,7 @@ f"""            .___  ___.  _______ .__   __.  __    __
                         elif choice in ("view profile",'3'):
                                 sides.Profile()
                         elif choice in ("leaderboard",'4'):
-                                ...
+                                efx.ClearScreen(); time.sleep(1)
                         elif choice in ("exit",'5'):
-                                choice=efx.Exit(opt='menu')
+                                choice=efx.Exit()
                                 if choice==False: Menu()

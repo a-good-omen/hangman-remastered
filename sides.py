@@ -109,7 +109,7 @@ def Profile():
 \n\tᑎᗩᗰE : {Player['name']}
 \n\tᑌSEᖇᑎᗩᗰE : {Player['userid']}
 \n\tᑭᗩSSᗯOᖇᗪ : {passwd}
-\n\n\n\n\t{text}[edp] Edit Profile\t[sgp] See Game Progress\t\t[ng] Do Nothing(go back)\n
+\n\n\n\n  {text}[edp] Edit Profile\t[sgp] See Game Progress\t\t[ng] Do Nothing(go back)\n
 CHOICE: """
 		choice=input(efx.Printer(Profile_display,delay=0.005)).lower().strip()
 
@@ -140,7 +140,7 @@ CHOICE: """
 				elif choice in ('4','nothing'):
 					break
 
-				txt="Any more changes?"
+				if TPlayer!=Player: txt="Any more changes?"
 
 			if TPlayer!=Player:
 				efx.Printer("Applying changes...")

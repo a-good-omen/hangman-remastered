@@ -1,7 +1,8 @@
-import efx,time,data,sides
+import efx,data,sides
 from copy import deepcopy
+from time import sleep
 
-def man(setup=True):				#Making this a function allows recalling later during GameMechanics
+def man(setup=True):				#Function allows recalling later during GameMechanics
 	if setup: man.parts=["","","","","","","","","",""]
 	man.hangman_display=\
 f"""		                ______________
@@ -19,7 +20,7 @@ N				|
 
 
 def LoadGame():					#Loads the main game after login is successfull
-	man()					#Called here so that the function attributes are defined and accessible every new game
+	man()					#Reloads game chunks
 	TPlayer=deepcopy(sides.Player)
 	prog=TPlayer['data'];wprog=TPlayer['words']
 	while True:
@@ -32,23 +33,25 @@ def LoadGame():					#Loads the main game after login is successfull
 		elif choice in ("phantom","3"): difficulty="Phantom";chances,code=5,2; break
 
 	efx.Printer("Opening parchment...")
-	efx.Printer("WORD SELECTED!"); time.sleep(0.5)
+	efx.Printer("WORD SELECTED!",pdelay=0.5)
 	word=data.LoadWord(difficulty,wprog)
 	status=GameMechanics(word,chances,difficulty)
 
 	if status=="completed":
 		efx.Printer(man.hangman_display,delay=0.005)
-		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False); time.sleep(0.5)
+		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False,pdelay=0.5)
+
 		prog[code]+=1; wprog.append(word)
 		data.DataAdder(TPlayer,rmv=sides.Player)
-		efx.Printer("Whew.. You managed to escape!",clear=False); time.sleep(3.5)
+
+		efx.Printer("Whew.. You managed to escape!",clear=False,pdelay=4)
 		(sides.Player).update(TPlayer)
 	else:
 		efx.Printer(man.hangman_display,delay=0.005)
 		efx.Printer("GAME OVER!\n\n",clear=False)
-		efx.Printer(f"You failed to guess the word! The word was: {word.upper()}!",clear=False); time.sleep(5)
-		efx.Printer("The hangman got you!"), time.sleep(0.5)
-		efx.Printer("Hanging..."); efx.ClearScreen(); time.sleep(5)
+		efx.Printer(f"You failed to guess the word! The word was: {word.upper()}!",clear=False,pdelay=5)
+		efx.Printer("The hangman got you!",pdelay=0.5)
+		efx.Printer("Hanging..."); efx.ClearScreen(); sleep(5)
 	Menu()
 
 
@@ -59,29 +62,27 @@ def GameMechanics(word,chances,difficulty):				#Handles the game's mechanics,i.e
 
 		if wrd_display.split()==list(word): return "completed"
 
-		time.sleep(0.1)
 		efx.Printer(man.hangman_display,delay=0.0005 )
 		efx.Printer(f"\tWORD STATUS: {wrd_display}\t\t\t[contains {wrd_display.count('_')} letters more to guess!]",clear=False,delay=0.005)
 		guess=input(efx.Printer(f"\n\nYour Guess ({chances} left): ",clear=False)).lower(); guess=guess.strip()
 
 		if guess==word: return "completed"
 		elif len(guess)==len(word) and guess!=word:
-			efx.Printer("Incorrect guess!"); time.sleep(0.5)
+			efx.Printer("Incorrect guess!",pdelay=0.5)
 			setup_man(difficulty)
 			chances-=1
 			continue
 
 		if ""==guess or len(guess)>1:
-			efx.Printer("Your guess must contain the whole word or just one letter!"); time.sleep(0.5)
-			efx.Printer("The hangman is watching and there's no escape!"); time.sleep(0.1)
+			efx.Printer("Your guess must contain the whole word or just one letter!",pdelay=0.5)
+			efx.Printer("The hangman is watching and there's no escape!",pdelay=0.3)
 			continue
 
 		if guess in word:
-			efx.Printer("Letter exists in the word!"); time.sleep(0.5)
+			efx.Printer("Letter exists in the word!",pdelay=0.5)
 
-			if word.count(guess)>1 and word.count(guess)==wrd_display.count(guess):
-				efx.Printer(f"No more {guess.upper()}'s in the word!")
-				time.sleep(0.5)
+			if word.count(guess)==wrd_display.count(guess):
+				efx.Printer(f"No more {guess.upper()}'s in the word!",pdelay=0.5)
 				continue
 
 			wrd_display=update_display(guess,word,wrd_display,difficulty)
@@ -135,12 +136,16 @@ f"""            .___  ___.  _______ .__   __.  __    __
                         if choice in ("play game",'1'):
                                 efx.Printer("Loading....")
                                 LoadGame()
+
                         elif choice in ("game help",'2'):
                                 input(efx.Printer(efx.help,delay=0.0005))
+
                         elif choice in ("view profile",'3'):
                                 sides.Profile()
+
                         elif choice in ("leaderboard",'4'):
-                                efx.ClearScreen(); time.sleep(1)
+                                ...
+
                         elif choice in ("exit",'5'):
                                 choice=efx.Exit()
                                 if choice==False: Menu()

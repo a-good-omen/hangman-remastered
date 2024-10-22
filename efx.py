@@ -67,6 +67,7 @@ The higher the difficulty, the fewer chances you have to win (obvious, right?).
                      └──────────────────────────────────────┘
 
 - Unique Words: No word is repeated across different difficulty levels, so don’t hope to find a word you’ve already guessed in easier modes.
+   Words once guessed will not be encountered again! Also, there will be 50 words to guess from in each difficulty level!
 
 - Profile Tracking: You’ll be able to check how many words you’ve guessed from each difficulty level in your profile!
 
@@ -84,15 +85,15 @@ def ClearScreen():				#Calling this will clear the terminal window (won't work i
 	else: os.system('clear')
 
 
-def Printer(text,clear=True,delay=0.03):					#Deals with dynamic typing effect
+def Printer(text,clear=True,delay=0.03,pdelay=None):					#Deals with dynamic typing effect
 	dot="..." in text
-
 	if clear: ClearScreen()
 
 	for j in text:
 		sleep(0.9 if dot and j=='.' else delay)
 		print(j,end='',flush=True)
-	sleep(0.05)
+
+	if pdelay!=None: sleep(pdelay)
 
 	return ''
 

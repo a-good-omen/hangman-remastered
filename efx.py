@@ -1,18 +1,20 @@
-import os
+import os,sys
 from time import sleep
 from sys import exit
 
-lore="""
-In the late 1900s, a secluded village was haunted by a sinister figure known by the villagers as the Hangman.\nThe legend told of a dark,cursed parchment that appeared in the hands of those who crossed the Hangman’s path.\nThe parchment bore a hidden word that must be guessed to escape.
+intro="""
+                       _   _    _    _   _  ____ __  __    _    _   _
+                      | | | |  / \  | \ | |/ ___|  \/  |  / \  | \ | |
+                      | |_| | / _ \ |  \| | |  _| |\/| | / _ \ |  \| |
+                      |  _  |/ ___ \| |\  | |_| | |  | |/ ___ \| |\  |
+                      |_| |_/_/   \_|_| \_|\____|_|  |_/_/   \_|_| \_|
 
-For each incorrect guess, a spectral figure of the Hangman would draw closer to completion—a noose tightening\naround a ghostly neck. The cursed villagers who failed to guess the word were seized by the Hangman, their\nsouls trapped within the parchment’s dark embrace.
+                        ----------Created By a-good-omen----------
+\n\n\t\t\t\t  ↲ Press ENTER to start"""
 
-Though the Hangman disappeared centuries ago, whispers of his curse persist. Those who find the cursed \nparchment or hear the chilling challenge are said to risk becoming the Hangman’s next victims, forever bound to\nthe terror of his eternal game.
+lore="In the late 1900s, a secluded village was haunted by a sinister figure known by the villagers as the Hangman.\nThe legend told of a dark,cursed parchment that appeared in the hands of those who crossed the Hangman’s path.\nThe parchment bore a hidden word that must be guessed to escape.\n\nFor each incorrect guess, a spectral figure of the Hangman would draw closer to completion—a noose tightening\naround a ghostly neck. The cursed villagers who failed to guess the word were seized by the Hangman, their\nsouls trapped within the parchment’s dark embrace.\n\nThough the Hangman disappeared centuries ago, whispers of his curse persist. Those who find the cursed \nparchment or hear the chilling challenge are said to risk becoming the Hangman’s next victims, forever bound to\nthe terror of his eternal game.\n\n**ADAPTED"
 
-**ADAPTED"""
-
-
-diffics_display="""
+diffics="""
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⣷⡀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⣧⠀⢀                                                                  ⡠⠄⠀⠀⠄⡀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣿⣿⠃⠻⣧⠈⣦                                                                ⠊⢀⣤⣞⣔⢤⡈⠆
@@ -27,57 +29,68 @@ diffics_display="""
 ⠀⠀⠀⠀⠀⠀⠀⣼⣿⠿⠛⠉⠀⠉⠙⠛⠲⠤⠈⠙⠿⣿⣿⡄                                                              ⠈⠀⠐⠁
 ⠀⠀⠀⠀⠀⠀⠰⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠧"""
 
+help="""
+\t\t\t .  . __ .   .___.
+\t\t\t |  ||   |   |   |
+\t\t\t |__||_  |   |___|
+\t\t\t |  ||   |   |
+\t\t\t |  ||__ |__.|
 
-help=r""" 			 ____  ____  ________  _____     _______
-	                |_   ||   _||_   __  ||_   _|   |_   __ \
-	                  | |__| |    | |_ \_|  | |       | |__) |
-			  |  __  |    |  _| _   | |   _   |  ___/
-			 _| |  | |_  _| |__/ | _| |__/ | _| |_
-			|____||____||________||________||_____|
+\t\t     WELCOME TO HANGMAN-REMASTERED!
+      A classic word guessing game, remastered with the best gameplay!
+\t Originally published at https://github.com/a-good-omen/.
 
+──────────────────────────────────────────────────────────────────────────
 
-Welcome to the HANGMAN game — an exciting classic word guessing game! If you've played the previously published version;
-this is just a remastered version of it! Your skills will be tested as you navigate through THREE thrilling levels of difficulty.
+                           - OVERVIEW -
 
-                     ┌──────────────────────────────────────┐
-                     │            Game Overview             │
-                     └──────────────────────────────────────┘
+   A word will be given with all its letters concealed. Each correct guess
+   reveals a letter, while each incorrect guess brings you closer to being..
+   HANGED!
 
-You will guess a word chosen from one of three difficulty levels.
-The higher the difficulty, the fewer chances you have to win (obvious, right?).
+       - No hints are provided at any difficulty level.
+       - You may guess a single letter or the entire word.
+       - Each incorrect guess (letter or word) reduces your chances by 1.
+       - Guessing the full word correctly will end the game immediately.
+       - Guesses that are more than one letter long and don’t match the
+	 word’s length are ignored and will not penalize your chances.
 
-                     ┌──────────────────────────────────────┐
-                     │           Difficulty Levels          │
-                     └──────────────────────────────────────┘
+   NOTE: The number of chances indicates the remaining incorrect guesses
+   you can make, not the number of attempts to guess the word.
 
-[1] CURSED
-   - Chances: 10
-   - Description: The easiest level! You'll encounter shorter and simpler words. Makes the game EASIER for beginners!
+──────────────────────────────────────────────────────────────────────────
 
-[2] GHOST
-   - Chances: 8
-   - Description: A moderate challenge. The words here are longer and slightly trickier than those in the Cursed level.
+                           - GAME DETAILS -
 
-[3] PHANTOM
-   - Chances: 5
-   - Description: The ultimate test! This highest difficulty level features the longest and most challenging words.
+  The game has three difficulty levels, each offering a unique challenge.
 
-                     ┌──────────────────────────────────────┐
-                     │             Key Features             │
-                     └──────────────────────────────────────┘
+    CURSED
+    Chances - 10
+    The easiest level. Words are the shortest in the game.
 
-- Unique Words: No word is repeated across different difficulty levels, so don’t hope to find a word you’ve already guessed in easier modes.
-   Words once guessed will not be encountered again! Also, there will be 50 words to guess from in each difficulty level!
+    GHOST
+    Chances - 8
+    The medium level. Words are slightly longer than CURSED.
 
-- Profile Tracking: You’ll be able to check how many words you’ve guessed from each difficulty level in your profile!
+    PHANTOM
+    Chances - 5
+    The hardest level, with the longest words.
 
-- Local Data Storage: All your game data is stored locally, so you can’t continue playing on another device.
+──────────────────────────────────────────────────────────────────────────
 
-- Local Leaderboard: Multiple users play on the SAME device? Check where you stand when compared to them in the leaderboard! (Players
-   must be on the same device!)
+                          - MORE INFORMATION -
 
+   Players can check and edit their profile via the PROFILE option
+   in the menu.
 
-↲ Press ENTER to continue!"""
+   LEADERBOARD ranks the top 5 players based on the number of words guessed,
+   with priority given to words guessed at higher difficulty levels. If players
+   are tied, they are ranked alphabetically.
+
+   NOTE: The leaderboard is relevant if multiple players are using the
+   same device.
+
+──────────────────────────────────────────────────────────────────────────"""
 
 
 def ClearScreen():				#Calling this will clear the terminal window (won't work in Python's' IDLE)
@@ -85,13 +98,13 @@ def ClearScreen():				#Calling this will clear the terminal window (won't work i
 	else: os.system('clear')
 
 
-def Printer(text,clear=True,delay=0.03,pdelay=None):					#Deals with dynamic typing effect
+def Printer(text,clear=True,delay=0.02,pdelay=None):					#Deals with dynamic typing effect
 	dot="..." in text
 	if clear: ClearScreen()
 
-	for j in text:
-		sleep(0.9 if dot and j=='.' else delay)
-		print(j,end='',flush=True)
+	for letter in text:
+		sleep(0.9 if dot and letter=='.' else delay)
+		print(letter,end='',flush=True)
 
 	if pdelay!=None: sleep(pdelay)
 
@@ -100,12 +113,30 @@ def Printer(text,clear=True,delay=0.03,pdelay=None):					#Deals with dynamic typ
 
 def Exit():				#Custom exit function
 	while True:
-		choice=input(Printer("Are you sure you want to exit?(Y/N) ")).upper()
+		choice=input(Printer("Are you sure you want to exit?(Y/N) "))
 
-		if choice=='Y':
+		if choice in 'yY':
 			Printer("Exiting..."); ClearScreen()
 			exit()
 
-		elif choice=='N':
-			Printer("Exit request terminated!"); sleep(0.5)
+		elif choice in 'nN':
+			Printer("Exit request terminated!",pdelay=0.5)
 			return False
+
+
+def man(setup=True):                            #Function allows reloading chunks later in the game
+        if setup: man.parts=['']*10
+
+        man.hangman_display=f"""
+                                 ______________
+                                |             {man.parts[0]}
+H                               |             {man.parts[1]}
+A                               |            {man.parts[2]}{man.parts[3]}{man.parts[4]}
+N                               |           {man.parts[5]} {man.parts[6]} {man.parts[7]}
+G                               |            {man.parts[8]} {man.parts[9]}
+M                               |
+A                               |
+N                               |
+                                |
+                          ______|______
+                         /_____________\\ \n\n"""

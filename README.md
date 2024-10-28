@@ -24,17 +24,21 @@ Tell you later! >_<
 
 - Better animations and gameplay.
 <p align=center>
-  <img alt='intro' src="https://github.com/user-attachments/assets/9991c4ba-cb51-42bf-8610-1965c706c70b">
+  <img alt='intro' src="https://github.com/user-attachments/assets/385c7838-d88e-4255-957d-bf4504a72b3c">
 </p>
 
 - Players can now save their progress allowing them to continue where they left off.
 <p align=center>
-  <img alt='account' src="https://github.com/user-attachments/assets/a96e9969-11e3-47c2-8cf0-7a005bf3922f">
+  <img alt='account' src="https://github.com/user-attachments/assets/6fc9e6a2-b5ae-4ba6-86b7-f7c52a417bfc">
 </p>
 
 - Added game modes, local leaderboard and cleaner UI.
 <p align=center>
-  <img alt='menu' src="https://github.com/user-attachments/assets/472e814a-3ab6-45bf-8a03-f25854a03a48">
+  <img alt='menu' src="https://github.com/user-attachments/assets/7e9b97ca-f81b-4400-a06f-3d44671c8038">
+
+- Added User Profile management.
+<p align=center>
+  <img alt='profile' src="https://github.com/user-attachments/assets/d01dad41-1a1d-42b4-9673-af496e9e89be">
 </p>
 
 **and there's more...**

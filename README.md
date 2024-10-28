@@ -17,9 +17,15 @@ ___Step 2: Install Python___
 - MacOS: Open the `.pkg` file you installed.
 - Linux: Use the package manager.
 
-## How to Play
+During installation make sure to also install ˋpipˋ by checking
+- [X] Add python to PATH
 
-Tell you later! >_<
+## How to Install
+
+To install the game you can download the files from the github repository. The easiest way however, is to use `pip` .
+
+Open terminal and run `pip install gHangman`
+
 ## ++ Features
 
 - Better animations and gameplay.
@@ -43,4 +49,4 @@ Tell you later! >_<
 > Give inputs only when prompted to ensure intended working.
 
 > [!TIP]
-> Read the game guide (help) while you can to understand how everything works.
+> Read the game help present in the game to understand how everything works.

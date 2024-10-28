@@ -53,9 +53,15 @@ def LoadWord(difficulty,Glist):				#Selects the word to guess
 					if word not in Glist[times[difficulty]]: return word
 
 
-def LoadData(userid):			#Loads "userid's" data from the database
+def LoadData(userid=None):			#Loads "userid's" data from the database
 	with open("PlayerData.dat","rb") as data_file:
 		PlayerData=pickle.load(data_file)
 
-	for player in PlayerData:
-		if player['userid']==userid: return player
+	if userid:
+		for player in PlayerData:
+			if player['userid']==userid: return player
+	else:
+		LB_list=sorted(PlayerData,key=lambda x: (len(x['words'][2]),len(x['words'][1]),len(x['words'][0]),x['userid']),reverse=True)[:5]
+
+		if sum(len(LB_list[-1]['words'][j]) for j in range(3)): return LB_list
+		else: return []

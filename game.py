@@ -109,38 +109,20 @@ def man_dsply(difficulty):				#Updates hangman display at each incorrect guess
 
 def Menu():				#Includes the dynamic game menu
 	while True:
-                        choice=input(efx.Printer(f"""
-            .___  ___.  _______ .__   __.  __    __
-            |   \\/   | |   ____||  \\ |  | |  |  |  |                                  ■ USER: {sides.Player['userid']} ■
-            |  \\  /  | |  |__   |   \\|  | |  |  |  |
-            |  |\\/|  | |   __|  |  . `  | |  |  |  |
-    	    |  |  |  | |  |____ |  |\\   | |  `--'  |
-            |__|  |__| |_______||__| \\__|  \\______/\n\n
-                [1] Play Game                      _________
-                                                           |
-		[2] Game Help                              0
-                                                          /|\\
-                [3] Profile                               / \\
-                                                 ______________
-                [4] Leaderboard
-
-                [5] Exit
-
-            CHOICE: """,delay=0.0005)); choice=(choice.lower()).strip()
+                        choice=input(efx.Printer(efx.menu%(sides.Player['userid']),delay=0.0005)); choice=(choice.lower()).strip()
 
                         if choice in ("play game",'1'):
                                 efx.Printer("Loading....")
                                 LoadGame()
 
                         elif choice in ("game help",'2'):
-                                efx.Printer(efx.help,delay=0.0005)
-                                input('\n\n\n↲ Press ENTER to continue!')
+                                input(efx.Printer(efx.help,delay=0.0005))
 
                         elif choice in ("view profile",'3'):
                                 sides.Profile()
 
                         elif choice in ("leaderboard",'4'):
-                                ...
+                                sides.Leaderboard()
 
                         elif choice in ("exit",'5'):
                                 choice=efx.Exit()

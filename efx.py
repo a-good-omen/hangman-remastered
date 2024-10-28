@@ -29,12 +29,31 @@ diffics="""
 ⠀⠀⠀⠀⠀⠀⠀⣼⣿⠿⠛⠉⠀⠉⠙⠛⠲⠤⠈⠙⠿⣿⣿⡄                                                              ⠈⠀⠐⠁
 ⠀⠀⠀⠀⠀⠀⠰⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠧"""
 
+menu="""
+            .___  ___.  _______ .__   __.  __    __
+            |   \\/   | |   ____||  \\ |  | |  |  |  |                                  ■ USER: %s ■
+            |  \\  /  | |  |__   |   \\|  | |  |  |  |
+            |  |\\/|  | |   __|  |  . `  | |  |  |  |
+            |  |  |  | |  |____ |  |\\   | |  `--'  |
+            |__|  |__| |_______||__| \\__|  \\______/\n\n
+                [1] Play Game                      _________
+                                                           |
+                [2] Game Help                              0
+                                                          /|\\
+                [3] Profile                               / \\
+                                                 ______________
+                [4] Leaderboard
+
+                [5] Exit\n\n\n
+
+            CHOICE: """
+
 help="""
-\t\t\t .  . __ .   .___.
-\t\t\t |  ||   |   |   |
-\t\t\t |__||_  |   |___|
-\t\t\t |  ||   |   |
-\t\t\t |  ||__ |__.|
+\t\t\t    .  . __ .   .___.
+\t\t\t    |  ||   |   |   |
+\t\t\t    |__||_  |   |___|
+\t\t\t    |  ||   |   |
+\t\t\t    |  ||__ |__.|
 
 \t\t     WELCOME TO HANGMAN-REMASTERED!
       A classic word guessing game, remastered with the best gameplay!
@@ -84,13 +103,22 @@ help="""
    in the menu.
 
    LEADERBOARD ranks the top 5 players based on the number of words guessed,
-   with priority given to words guessed at higher difficulty levels. If players
-   are tied, they are ranked alphabetically.
+   with priority given to words guessed at higher difficulty levels. If
+   players are tied, they are ranked alphabetically.
 
-   NOTE: The leaderboard is relevant if multiple players are using the
-   same device.
+   NOTE: The leaderboard WORKS ONLY IF more than 1 player is using the same
+   device and the top 5 players have guessed atleast 1 word.
 
 ──────────────────────────────────────────────────────────────────────────"""
+
+Lboard='''
+\t  _      ______          _____  ______ _____  ____   ____          _____  _____
+\t | |    |  ____|   /\\   |  __ \\|  ____|  __ \\|  _ \\ / __ \\   /\\   |  __ \\|  __ \\
+\t | |    | |__     /  \\  | |  | | |__  | |__) | |_) | |  | | /  \\  | |__) | |  | |
+\t | |    |  __|   / /\\ \\ | |  | |  __| |  _  /|  _ <| |  | |/ /\\ \\ |  _  /| |  | |
+\t | |____| |____ / ____ \\| |__| | |____| | \\ \\| |_) | |__| / ____ \\| | \\ \\| |__| |
+\t |______|______/_/    \\_\\_____/|______|_|  \\_\\____/ \\____/_/    \\_\\_|  \\_\\_____/
+\n\t     RANK                         USERID                    TOTAL PROGRESS\n'''
 
 
 def ClearScreen():				#Calling this will clear the terminal window (won't work in Python's' IDLE)

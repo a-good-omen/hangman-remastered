@@ -173,3 +173,16 @@ CHOICE: """
 		elif choice in ('back','bk'):
 			break
 
+
+def Leaderboard():
+	LB=data.LoadData()
+
+	if len(LB) in range(2,6):
+		final=''
+		for num in range(len(LB)):
+			list=f"\n{num+1:>19}       {LB[num]['userid']:>25}     {sum(len(LB[num]['words'][i]) for i in range(3)):>20}\n"
+			final+=list
+	else:
+		final="\n\nCannot display Leaderboard!"
+	efx.Printer(efx.Lboard+final,delay=0.0005)
+	input('\n\n\n\n\n↲')

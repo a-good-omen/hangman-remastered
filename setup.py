@@ -1,9 +1,9 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(
     name='gHangman',
     version='1.0',
-    packages=find_packages(),
+    py_modules=['start'],
     install_requires=[],
     author='a-good-omen',
     author_email='student.rohn@gmail.com',

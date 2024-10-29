@@ -39,7 +39,7 @@ def LoadGame():					#Loads the main game after login is successfull
 	if status=="completed":
 		efx.Printer(man.hangman_display,delay=0.0005)
 		efx.Printer(f"Word guessed! It was {word.upper()}!\n\n",clear=False,pdelay=1)
-		efx.Printer("Whew.. You managed to escape!",clear=False,pdelay=4)
+		efx.Printer("Whew.. You managed to escape!",clear=False,pdelay=3.5)
 
 		wprog[code].append(word)
 		data.DataAdder(TPlayer,rmv=sides.Player)
@@ -49,7 +49,7 @@ def LoadGame():					#Loads the main game after login is successfull
 		efx.Printer(f"GAME OVER!\n\nYou failed to guess the word! The word was: {word.upper()}!",clear=False,pdelay=1)
 		efx.Printer("\n\nThe hangman got you!",clear=False,pdelay=2)
 		efx.Printer("Hanging...")
-		efx.ClearScreen(); sleep(5)
+		efx.ClearScreen(); sleep(4)
 
 	Menu()
 

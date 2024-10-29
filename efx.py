@@ -109,7 +109,7 @@ help="""
    NOTE: The leaderboard WORKS ONLY IF more than 1 player is using the same
    device and the top 5 players have guessed atleast 1 word.
 
-──────────────────────────────────────────────────────────────────────────\n\n↲ """
+──────────────────────────────────────────────────────────────────────────\n\n↲ ENTER to continue"""
 
 Lboard='''
 \t  _      ______          _____  ______ _____  ____   ____          _____  _____

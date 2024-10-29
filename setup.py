@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='gHangman',
-    version='1.0.3',
+    version='1.0.4',
     py_modules=['start', 'data', 'efx', 'game', 'sides'],
     install_requires=[],
     author='a-good-omen',

@@ -17,7 +17,7 @@ def LoadGame():					#Loads the main game after login is successfull
 			break
 
 		elif choice in ("ghost","2"):
-			difficult,chances,code="Ghost",8,1
+			difficulty,chances,code="Ghost",8,1
 			(man).parts[:2]=["|","|"]
 			man(setup=False); break
 
@@ -28,9 +28,9 @@ def LoadGame():					#Loads the main game after login is successfull
 	efx.Printer("Opening parchment...")
 	word=data.LoadWord(difficulty,wprog)
 
-	if word:
-		efx.Printer(f'Seems like you have mastered the {difficulty} level!',pdelay=0.5)
-		efx.Printer('Returning to Menu...')
+	if word==None:
+		efx.Printer(f'Seems like you have mastered the {difficulty.upper()} level!',pdelay=0.5)
+		efx.Printer('Returning to menu...')
 		Menu()
 
 	efx.Printer("WORD SELECTED!",pdelay=0.5)

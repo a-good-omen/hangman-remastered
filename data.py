@@ -1,5 +1,8 @@
 import pickle
 from random import choice
+from pkg_resources import resource_filename
+
+data_file_path=resource_filename(__name__,'Words.dat')
 
 def DataAdder(data,rmv=None):				#Appends new player to the database
 	data_file=open("PlayerData.dat","rb+")
@@ -42,7 +45,7 @@ def Verifier(user,password=None):				#Helps verify player credentials
 
 
 def LoadWord(difficulty,Glist):				#Selects the word to guess
-	with open("Words.dat","rb") as word_file:
+	with open(data_file_path,"rb") as word_file:
 		times={"Cursed":0,"Ghost":1,"Phantom":2}
 
 		for count in range(times[difficulty]+1):

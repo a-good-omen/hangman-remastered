@@ -26,9 +26,14 @@ def LoadGame():					#Loads the main game after login is successfull
 			break
 
 	efx.Printer("Opening parchment...")
-	efx.Printer("WORD SELECTED!",pdelay=0.5)
-
 	word=data.LoadWord(difficulty,wprog)
+
+	if word:
+		efx.Printer(f'Seems like you have mastered the {difficulty} level!',pdelay=0.5)
+		efx.Printer('Returning to Menu...')
+		Menu()
+
+	efx.Printer("WORD SELECTED!",pdelay=0.5)
 	status=GameMechanics(word,chances,difficulty)
 
 	if status=="completed":

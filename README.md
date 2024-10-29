@@ -22,9 +22,11 @@ During installation make sure to also install `pip` by checking
 
 ## How to Install
 
-To install the game you can download the files from the github repository. The easiest way however, is to use `pip` .
+To install the game you can download the files from the github repository.
 
-- Open terminal and run `pip install gHangman`
+The __easiest__ way however, is to use `pip` .
+
+- Open terminal and run `pip install --upgrade gHangman`
 - Once installed you can run the game by simply typing `hangman`
 
 ## ++ Features

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='gHangman',
-    version='1.0.5',
+    version='1.0.6',
     py_modules=['start', 'data', 'efx', 'game', 'sides'],
     install_requires=[],
     author='a-good-omen',
@@ -24,6 +24,6 @@ setup(
     },
     include_package_data=True,
     package_data={
-        '': ['Words.dat'],  # Include Words.dat in the package
+        '': ['Words.dat'],
     },
 )

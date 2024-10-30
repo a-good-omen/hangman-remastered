@@ -2,9 +2,10 @@ from setuptools import setup
 
 setup(
     name='gHangman',
-    version='1.0.6',
+    version='1.1.0',
     py_modules=['start', 'data', 'efx', 'game', 'sides'],
     install_requires=[],
+    data_files=[('', ['Words.dat'])],
     author='a-good-omen',
     author_email='student.rohn@gmail.com',
     description='A classical word guessing game.',

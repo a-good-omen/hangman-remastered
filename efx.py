@@ -121,7 +121,7 @@ Lboard='''
 \n\t     RANK                         USERID                    TOTAL PROGRESS\n'''
 
 
-def ClearScreen():				#Calling this will clear the terminal window (won't work in Python's' IDLE)
+def ClearScreen():				#Calling this will clear the terminal window
 	if os.name=='nt': os.system('cls')
 	else: os.system('clear')
 

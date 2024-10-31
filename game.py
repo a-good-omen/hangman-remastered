@@ -5,7 +5,7 @@ from time import sleep
 man=efx.man
 
 def LoadGame():					#Loads the main game after login is successfull
-	man()					#Reloads game chunks
+	man()
 	TPlayer=deepcopy(sides.Player)
 	wprog=TPlayer['words']
 
@@ -29,7 +29,7 @@ def LoadGame():					#Loads the main game after login is successfull
 	word=data.LoadWord(difficulty,wprog)
 
 	if word==None:
-		efx.Printer(f'Seems like you have mastered the {difficulty.upper()} level!',pdelay=0.5)
+		efx.Printer(f'Congrats! Seems like you have mastered the {difficulty.upper()} level!',pdelay=0.5)
 		efx.Printer('Returning to menu...')
 		Menu()
 

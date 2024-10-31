@@ -109,7 +109,7 @@ f"""Since **{userid}** couldn't be found in the database, try one of these\n
 					if choice==False: ExistingLogin()
 
 
-def Profile():
+def Profile():					#Deals with Profile related activities
 	global Player
 	passwd='*'*len(Player['passwd']);text='[sp] See Password\t'
 
@@ -144,6 +144,8 @@ CHOICE: """
 				elif choice in ('2','username'):
 					while True:
 						userid=input(efx.Printer('\nNew Username: '))
+						if Player['userid']==userid or userid=='': efx.Printer('Change to NEW display name!'); continue
+
 						if data.Verifier(userid)!='user exists': TPlayer['userid']=userid; break
 						else: efx.Printer('A user with the username already exists!',pdelay=0.5)
 
@@ -174,7 +176,7 @@ CHOICE: """
 			break
 
 
-def Leaderboard():
+def Leaderboard():				#Responsible for creating and updating the Leaderboard
 	LB=data.LoadData()
 
 	if len(LB) in range(2,6):

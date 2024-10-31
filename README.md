@@ -2,7 +2,7 @@
 
 A terminal based version of the popular word guessing game Hangman. Remastered version of the previously published Hangman game. Includes added features, lore, animations and more.
 
-> If you find any bugs or see parts of the code that could be improvised make sure to open a pull request or comment in discussions.
+> Efforts have been made to meticulously remove erros and bugs from the code. However, if you were to find any bugs or see parts of the code that could be improvised feel free to open a pull request or comment in discussions.
 
 ## Requirements
 
@@ -26,8 +26,8 @@ To install the game you can download the files from the github repository.
 
 The __easiest__ way however, is to use `pip` .
 
-- Open terminal and run `pip install --upgrade gHangman`
-- Once installed you can run the game by simply typing `hangman`
+- Open terminal and run `pip install gHangman`.
+- Once installed you can run the game by simply typing `hangman` or `python -m hangman`.
 
 ## ++ Features
 

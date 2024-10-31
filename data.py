@@ -41,7 +41,7 @@ def Verifier(user,password=None):				#Helps verify player credentials
 	finally: data_file.close()
 
 
-def LoadWord(difficulty,Glist):				#Selects the word to guess
+def LoadWord(difficulty,Glist):				#Loads the word from stored words to guess
 	with open('Words.dat',"rb") as word_file:
 		times={"Cursed":0,"Ghost":1,"Phantom":2}
 
@@ -53,7 +53,7 @@ def LoadWord(difficulty,Glist):				#Selects the word to guess
 					if word not in Glist[times[difficulty]]: return word
 
 
-def LoadData(userid=None):			#Loads "userid's" data from the database
+def LoadData(userid=None):			#Loads data from the database
 	with open("PlayerData.dat","rb") as data_file:
 		PlayerData=pickle.load(data_file)
 

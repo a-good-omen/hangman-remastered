@@ -26,7 +26,7 @@ To install the game you can download the files from the github repository.
 
 The __easiest__ way however, is to use `pip` .
 
-- Open terminal and run `pip install --upgrade G-hangman`.
+- Open terminal and run `pip install G-hangman`.
 - Once installed you can run the game by simply typing `hangman` or `python -m hangman`.
 
 ## ++ Features

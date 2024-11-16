@@ -26,9 +26,9 @@ def CreateAccount():					#Deals with account creation
 	while True:
 		efx.Printer("""
 \t\t/ ` _ _  _ _|_ _    _  _ _ _     _ _|_
-\t\t\_,| (/_(_| | (/_  (_|(_(_(_)|_|| | |""",delay=0.0005)
+\t\t\_,| (/_(_| | (/_  (_|(_(_(_)|_|| | |\n\t\t\t\t\t\t\t\t\tTo go back, leave any field empty!""",delay=0.0001)
 		PlayerData={'words':([],[],[])}
-		PlayerData['name']=input(efx.Printer("\n\nName: ",clear=False)).title()
+		PlayerData['name']=input(efx.Printer("\nName: ",clear=False)).title()
 		PlayerData['userid']=input(efx.Printer("\nCreate display name: ",clear=False)).strip()
 		PlayerData['passwd']=input(efx.Printer("\nCreate password: ",clear=False)).strip()
 
@@ -169,7 +169,7 @@ CHOICE: """
 
 		elif choice in ('check progress','cp'):
 			prog=Player['words']
-			efx.Printer(efx.diffics+f"\n\t     {len(prog[0])}/50\t\t\t\t{len(prog[1])}/50\t\t\t\t    {len(prog[2])}/50\n\t      {len(prog[0])*2}%\t\t\t\t {len(prog[1])*2}%\t\t\t\t     {len(prog[2])*2}%",delay=0.0004)
+			efx.Printer(efx.diffics+f"\n\t     {len(prog[0])}/50\t\t\t\t{len(prog[1])}/50\t\t\t\t    {len(prog[2])}/50\n\t      {len(prog[0])*2}%\t\t\t\t {len(prog[1])*2}%\t\t\t\t     {len(prog[2])*2}%",delay=0.0001)
 			input(efx.Printer('\n\n\n\n\n\n↲ Press ENTER to continue',clear=False,delay=0.005))
 
 		elif choice in ('back','bk'):

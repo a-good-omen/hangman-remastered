@@ -10,7 +10,7 @@ def LoadGame():					#Loads the main game after login is successfull
 	wprog=TPlayer['words']
 
 	while True:
-		choice=input(efx.Printer("Choose Difficulty level\n\n"+efx.diffics+"\n\t  [1] CURSED\t\t\t     [2] GHOST\t\t\t         [3] PHANTOM\n\nCHOICE: ",delay=0.0005)); choice.lower()
+		choice=input(efx.Printer("Choose Difficulty level\n\n"+efx.diffics+"\n\t  [1] CURSED\t\t\t     [2] GHOST\t\t\t         [3] PHANTOM\n\nCHOICE: ",delay=0.0002)); choice.lower()
 
 		if choice in ("cursed","1"):
 			difficulty,chances,code="Cursed",10,0
@@ -114,7 +114,8 @@ def man_dsply(difficulty):				#Updates hangman display at each incorrect guess
 
 def Menu():				#Includes the dynamic game menu
 	while True:
-                        choice=input(efx.Printer(efx.menu%(sides.Player['userid']),delay=0.0005)); choice=(choice.lower()).strip()
+                        choice=input(efx.Printer(efx.menu%(sides.Player['userid']),delay=0.0001))
+                        choice=(choice.lower()).strip()
 
                         if choice in ("play game",'1'):
                                 efx.Printer("Loading....")
@@ -123,7 +124,7 @@ def Menu():				#Includes the dynamic game menu
                         elif choice in ("game help",'2'):
                                 input(efx.Printer(efx.help,delay=0.0005))
 
-                        elif choice in ("view profile",'3'):
+                        elif choice in ("profile",'3'):
                                 sides.Profile()
 
                         elif choice in ("leaderboard",'4'):

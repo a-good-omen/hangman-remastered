@@ -41,7 +41,7 @@ def Verifier(user,password=None):				#Helps verify player credentials
 	finally: data_file.close()
 
 
-def LoadWord(difficulty,Glist):				#Loads the word from stored words to guess
+def LoadWord(difficulty,Glist):				#Loads a word from stored words to guess
 	with open('Words.dat',"rb") as word_file:
 		times={"Cursed":0,"Ghost":1,"Phantom":2}
 

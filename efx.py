@@ -126,7 +126,7 @@ def ClearScreen():				#Calling this will clear the terminal window
 	else: os.system('clear')
 
 
-def Printer(text,clear=True,delay=0.02,pdelay=None):					#Deals with dynamic typing effect
+def Printer(text,clear=True,delay=0.01,pdelay=None):					#Deals with dynamic typing effect
 	dot="..." in text
 	if clear: ClearScreen()
 
